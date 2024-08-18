@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="section-body">
-      <div class="row mt-sm-4">
+      <div class="row mt-sm-4 d-flex justify-content-center">
         {{-- INICIO BLOCO 1 --}}
         <div class="col-12 col-md-12 col-lg-7">
 
@@ -23,7 +23,7 @@
               <div class="card-body">
                   <div class="row">
                     <div class="form-group col-12">
-                        <div class="mb-3">
+                        <div class="mb-3 text-center">
                             @if(Auth::user()->image != null)
                             <img src="{{ asset(Auth::user()->image) }}" alt="{{ Auth::user()->name }}" class="img-fluid mb-3" style="width: 220px; height:auto; object-fit: cover; border-radius:50%;">
                             @else
@@ -37,18 +37,18 @@
                     <div class="form-group col-md-6 col-12">
                       <label>Nome</label>
                       <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
-                      <div class="invalid-feedback">
-                        Por favor, informe o seu nome!
-                      </div>
                     </div>
 
+
+
                     <div class="form-group col-md-6 col-12">
-                      <label>E-mail</label>
-                      <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
-                      <div class="invalid-feedback">
-                        Por favor, informe o seu e-mail!
-                      </div>
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
                     </div>
+
+
+
+
                   </div>
               </div>
               <div class="card-footer text-right">
@@ -61,47 +61,42 @@
         {{-- FIM BLOCO 1 --}}
 
         {{-- INICIO BLOCO 2 --}}
-<div class="col-12 col-md-12 col-lg-7">
+        <div class="col-12 col-md-12 col-lg-7">
 
-<div class="card">
-<form action="{{ route('admin.profile.password') }}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">
-@csrf
-<div class="card-header">
-<h4>Atualizar Senha</h4>
-</div>
-<div class="card-body">
-<div class="row">
+          <div class="card">
+            <form action="{{ route('admin.profile.password') }}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">
+              @csrf
+              <div class="card-header">
+                <h4>Atualizar Senha</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
 
-<div class="form-group col-12">
-<label>Senha Atual</label>
-<input type="password" class="form-control" name="current_password" placeholder="Digite sua senha atual" >
-</div>
+                  <div class="form-group col-12">
+                    <label>Senha Atual</label>
+                    <input type="password" class="form-control" name="current_password" placeholder="Digite sua senha atual" >
+                  </div>
 
-<div class="form-group col-12">
-<label>Nova Senha</label>
-<input type="password" class="form-control" name="password" placeholder="Digite a nova senha" >
-</div>
+                  <div class="form-group col-12">
+                    <label>Nova Senha</label>
+                    <input type="password" class="form-control" name="password" placeholder="Digite a nova senha" >
+                  </div>
 
-<div class="form-group col-12">
-<label>Confirmar Senha</label>
-<input type="password" class="form-control" name="password_confirmation" placeholder="Confirme sua senha" >
-</div>
+                  <div class="form-group col-12">
+                    <label>Confirmar Senha</label>
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirme sua senha" >
+                  </div>
 
+                </div>
+              </div>
+              <div class="card-footer text-right">
+                <button class="btn btn-primary">Salvar</button>
+              </div>
+            </form>
+          </div>
 
-
-
-
-</div>
-</div>
-<div class="card-footer text-right">
-<button class="btn btn-primary">Salvar</button>
-</div>
-</form>
-</div>
-
-</div>
+        </div>
         {{-- FIM BLOCO 2 --}}
-
 
       </div>
     </div>

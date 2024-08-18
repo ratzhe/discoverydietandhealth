@@ -21,6 +21,7 @@ class ProfileController extends Controller
             'email' => ['required', 'email', 'unique:users,email,' .Auth::user()->id],
             'image' => ['image', 'max:2048'],
 
+
         ]);
 
         $user = Auth::user();
@@ -44,8 +45,6 @@ class ProfileController extends Controller
             $path = "/uploads/" . $imageName;
 
             $user->image = $path;
-
-
         }
 
         $user->name = $request->name;

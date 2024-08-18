@@ -11,13 +11,14 @@
         <li class="dropdown active">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Painel</span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="{{ route('admin.showRegisterForm') }}">Novos Usuários</a></li>
-            <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
+            <li class="active"><a class="nav-link" href="{{ route('admin.profile') }}">Meu Perfil</a></li>
+            <li class=""><a class="nav-link" href="{{ route('admin.showRegisterForm') }}">Novos Usuários</a></li>
+            <li class=""><a class="nav-link" href="{{ route('admin.seeusers') }}">Ver Usuários</a></li>
           </ul>
         </li>
         <li class="menu-header">Starter</li>
         <li class="dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Relatórios</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
             <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>

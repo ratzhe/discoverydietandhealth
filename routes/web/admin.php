@@ -5,7 +5,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\RegisterController;
+use App\Http\Controllers\Backend\SeeUsersController;
 use App\Http\Middleware\Admin;
+
+Route::post('admin/logout', [AdminController::class, 'logout'])
+->name('logout');
 
 //Rota admin
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])
@@ -36,5 +41,22 @@ Route::get('admin/register', [AdminController::class, 'showRegisterForm'])
 ->middleware(['auth', 'admin'])
 ->name('admin.showRegisterForm');
 
+
+Route::post('admin/register', [RegisterController::class, 'store'])
+->middleware(['auth', 'admin'])
+->name('admin.store');
+
+Route::get('admin/users/{id}/edit', [SeeUsersController::class, 'editUser'])
+->middleware(['auth', 'admin'])
+->name('admin.editUser');
+
+Route::get('admin/users/see', [SeeUsersController::class, 'seeUsers'])
+->middleware(['auth', 'admin'])
+->name('admin.seeusers');
+
+// Rota para excluir usuário
+Route::delete('admin/users/{id}', [SeeUsersController::class, 'destroy'])
+->middleware(['auth', 'admin'])
+->name('admin.deleteUser');
 
 
