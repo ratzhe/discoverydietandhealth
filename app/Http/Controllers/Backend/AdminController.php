@@ -20,4 +20,12 @@ class AdminController extends Controller
 
         return view('admin/auth/forgot-password');
     }
+
+    public function register(){
+        return view('admin/register');
+    }
+
+    public function showRegisterForm() {
+        return view('admin.register');
+    }
 }
