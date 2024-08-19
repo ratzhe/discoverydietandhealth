@@ -186,7 +186,6 @@
             width: 30%;
             text-align: center;
         }
-
         .fotoPC {
             display: none;
         }
@@ -207,7 +206,7 @@
     <div class="containerUM">
         <div class="textoUM">
             <img src="{{ asset('backend/assets/img/fotoTexto.png')}}" class="fotoTexto"><br>
-            <button>ACESSAR</button>
+            <a href="{{ route('admin.login')}}" style="margin: 10px auto;">ACESSAR</a>
         </div>
         <div class="imagemUM">
             <img src="{{ asset('backend/assets/img/fotoMedica.png')}}" class="fotoMedica">
