@@ -60,5 +60,5 @@ class RegisterController extends Controller
 
         toastr()->success('Usuário cadastrado com sucesso!');
         return redirect()->route('admin.seeusers');
-    }
+    }
 }
