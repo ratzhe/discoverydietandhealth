@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-
     /**
      * Display the registration view.
      */
@@ -31,7 +30,6 @@ class RegisterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //dd($request->all());
         // Validar os dados do formulário
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -39,7 +37,15 @@ class RegisterController extends Controller
             'username' => ['string', 'max:255'],
             'phone' => ['string'],
             'role' => ['required', 'string', 'in:admin,nutricionist,trainer,patient'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+            ],
         ]);
 
         // Criar o novo usuário
@@ -52,7 +58,6 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        //return redirect()->back()->with('success', 'Senha alterada com sucesso!');
         toastr()->success('Usuário cadastrado com sucesso!');
         return redirect()->route('admin.seeusers');
     }

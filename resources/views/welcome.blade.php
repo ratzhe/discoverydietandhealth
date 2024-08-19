@@ -156,6 +156,28 @@
         color: #333;
     }
 
+    a.acessar-btn {
+    background-color: #3d7182;
+    font-size: 80%;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 10px auto;
+    margin-left: 10%;
+    display: block;
+    width: 15%;
+    text-align: center;
+    text-decoration: none;
+    }
+
+    a.acessar-btn:hover {
+        background-color: #44869b;
+    }
+
+
     @media (max-width: 768px) {
         .containerUM {
             flex-direction: column;
@@ -206,7 +228,7 @@
     <div class="containerUM">
         <div class="textoUM">
             <img src="{{ asset('backend/assets/img/fotoTexto.png')}}" class="fotoTexto"><br>
-            <a href="{{ route('admin.login')}}" style="margin: 10px auto;">ACESSAR</a>
+            <a href="{{ route('admin.login')}}" class="acessar-btn">ACESSAR</a>
         </div>
         <div class="imagemUM">
             <img src="{{ asset('backend/assets/img/fotoMedica.png')}}" class="fotoMedica">

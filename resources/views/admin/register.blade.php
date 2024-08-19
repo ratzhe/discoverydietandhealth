@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="card-footer text-right">
-                    <button ype="submit" class="btn btn-primary" style="width: 190px;">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" style="width: 190px;">Cadastrar</button>
                 </div>
               </form>
             </div>
@@ -75,3 +75,58 @@
   </section>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#password").on('keyup', function() {
+        var strength = 0;
+        var password = $(this).val();
+
+        // Critérios de validação
+        if (password.length >= 8) strength += 1;
+        if (password.match(/(?=.*[a-z])(?=.*[A-Z])/)) strength += 1;
+        if (password.match(/(?=.*[0-9])/)) strength += 1;
+        if (password.match(/(?=.*[!@#$%^&*])/)) strength += 1;
+
+        // Atualizar o indicador de força
+        var pwindicator = $("#pwindicator");
+        pwindicator.removeClass();
+        pwindicator.addClass('pwindicator');
+
+        if (strength === 1) {
+            pwindicator.addClass('bg-danger').text('Fraca');
+        } else if (strength === 2) {
+            pwindicator.addClass('bg-warning').text('Média');
+        } else if (strength >= 3) {
+            pwindicator.addClass('bg-success').text('Forte');
+        } else {
+            pwindicator.text('');
+        }
+    });
+});
+</script>
+@endpush
+
+@push('styles')
+<style>
+.pwindicator {
+    height: 5px;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+.pwindicator.bg-danger {
+    background-color: #dc3545;
+    width: 33%;
+}
+.pwindicator.bg-warning {
+    background-color: #ffc107;
+    width: 66%;
+}
+.pwindicator.bg-success {
+    background-color: #28a745;
+    width: 100%;
+}
+</style>
+@endpush
