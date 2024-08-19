@@ -23,47 +23,42 @@
   <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-94034622-3');
+  </script>
+</head>
 
 <body>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
-      <!-- inicio navbar -->
+      <!-- Inicio Navbar -->
       @include('admin.layout.navbar')
-      <!-- fim navbar -->
+      <!-- Fim Navbar -->
 
-      <!-- inicio sidebar -->
+      <!-- Inicio Sidebar -->
       @include('admin.layout.sidebar')
-      <!-- fim sidebar -->
+      <!-- Fim Sidebar -->
 
-      <!-- iNICIO Main Content -->
+      <!-- Inicio Main Content -->
       <div class="main-content">
-
         @yield('content')
-
       </div>
-      <!-- fim main -->
+      <!-- Fim Main Content -->
 
-      <!-- inicio footer -->
+      <!-- Inicio Footer -->
       <footer class="main-footer">
         <div class="footer-left">
           Todos os Direitos Reservados &copy; <?=date('Y')?> <div class="bullet"></div> <a href="https://ddh.com.br/">Discovery Diet & Health</a>
         </div>
-        <div class="footer-right">
-
-        </div>
+        <div class="footer-right"></div>
       </footer>
-      <!-- fim footer -->
+      <!-- Fim Footer -->
     </div>
   </div>
 
@@ -71,12 +66,12 @@
   <script src="{{ asset('backend/assets/modules/jquery.min.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/popper.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/tooltip.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/modules/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
   <script src="{{ asset('backend/assets/js/stisla.js') }}"></script>
 
-  <!-- JS Libraies -->
+  <!-- JS Libraries -->
   <script src="{{ asset('backend/assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/chart.min.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
@@ -84,20 +79,19 @@
   <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
   <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
-  <!-- JS  Toastr -->
+  <!-- JS Toastr -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <!-- Page Specific JS File -->
-  <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
 
   <!-- Template JS File -->
   <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
 
+  <!-- Toastr Error Display -->
   <script>
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-    toastr.error("{{ $error  }}");
-    @endforeach
+      @foreach ($errors->all() as $error)
+        toastr.error("{{ $error }}");
+      @endforeach
     @endif
   </script>
 </body>

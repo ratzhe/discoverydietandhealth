@@ -59,4 +59,10 @@ Route::delete('admin/users/{id}', [SeeUsersController::class, 'destroy'])
 ->middleware(['auth', 'admin'])
 ->name('admin.deleteUser');
 
+Route::put('admin/users/{id}', [SeeUsersController::class, 'update'])
+->middleware(['auth', 'admin'])
+->name('admin.updateUser');
+
+
+
 

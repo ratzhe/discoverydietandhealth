@@ -20,14 +20,14 @@
                         @else
                             <p class="card-text">Nutricionista</p>
                         @endif
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ route('admin.dashboard', $user->id) }}" class="btn btn-primary mx-1">Dashboard</a>
-                            <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-success mx-1">Editar</a>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="{{ route('admin.dashboard', $user->id) }}" class="btn btn-primary mx-1 d-flex align-items-center">Dashboard</a>
+                            <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-success mx-1 d-flex align-items-center">Editar</a>
                             <!-- Formulário de exclusão -->
                             <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger mx-1" style="width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                <button type="submit" class="btn btn-danger d-flex align-items-center">
                                     <i class="bi bi-trash" style="font-size: 16px;"></i>
                                 </button>
                             </form>

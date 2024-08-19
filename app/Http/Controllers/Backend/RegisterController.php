@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
+
     /**
      * Display the registration view.
      */
@@ -30,6 +31,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        //dd($request->all());
         // Validar os dados do formulário
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -52,6 +54,6 @@ class RegisterController extends Controller
 
         //return redirect()->back()->with('success', 'Senha alterada com sucesso!');
         toastr()->success('Usuário cadastrado com sucesso!');
-        return redirect()->back();
+        return redirect()->route('admin.seeusers');
     }
 }
