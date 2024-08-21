@@ -11,7 +11,7 @@ $fa-li-width:                 2em !default;
 $fa-fw-width:                 (20em / 16);
 
 // Convenience function used to set content property
-@function fa-content($fa-var) {
+@function fa-content($fa-var) { 
   @return unquote("\"#{ $fa-var }\"");
 }
 

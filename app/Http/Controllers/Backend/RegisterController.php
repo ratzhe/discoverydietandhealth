@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'username' => ['string', 'max:255'],
             'phone' => ['string'],
-            'role' => ['required', 'string', 'in:admin,nutricionist,trainer,patient'],
+            'role' => ['required', 'string', 'in:admin,nutricionist,patient'],
             'password' => [
                 'required',
                 'confirmed',

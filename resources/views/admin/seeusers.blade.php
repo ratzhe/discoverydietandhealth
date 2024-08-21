@@ -21,16 +21,15 @@
                             <p class="card-text">Nutricionista</p>
                         @endif
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="{{ route('admin.dashboard', $user->id) }}" class="btn btn-primary mx-1 d-flex align-items-center">Dashboard</a>
-                            <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-success mx-1 d-flex align-items-center">Editar</a>
+                            <a href="{{ route('admin.dashboard', $user->id) }}" class="btn btn-primary mx-1 btn-custom">Dashboard</a>
+                            <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-success mx-1 btn-custom">Editar</a>
                             <!-- Formulário de exclusão -->
-                            <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('admin.deleteUser', $user->id) }}" class="btn btn-danger mx-1 btn-custom" data-method="DELETE" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">Excluir</a>
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:none;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger d-flex align-items-center">
-                                    <i class="bi bi-trash" style="font-size: 16px;"></i>
-                                </button>
                             </form>
+
                         </div>
                     </div>
                 </div>

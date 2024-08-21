@@ -38,59 +38,44 @@
               <img src="{{ asset('backend/assets/img/logoDDH.png')}}" alt="DDH" width="100" class="shadow-light rounded-circle">
             </div>
 
-            <div class="card card-primary">
-              <div class="card-header"><h4>Bem-vindo!</h4></div>
+             {{-- INICIO BLOCO 2 --}}
+        <div class="col-12 col-md-12 col-lg-7">
 
-              <div class="card-body">
-                <form action="{{ route('login') }}"  method="POST" action="#" class="needs-validation" novalidate="">
+            <div class="card">
+              <form action="{{ route('admin.profile.password') }}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
-                    @if ($errors->has('email'))
-                        <code>{{ $errors->first('email') }}</code>
-                    @endif
-                  </div>
+                <div class="card-header">
+                  <h4>Atualizar Senha</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row">
 
-                  <div class="form-group">
-                    <div class="d-block">
-                    	<label for="password" class="control-label">Senha</label>
-                      <div class="float-right">
-                        @if (Route::has('admin.forgot'))
-                            <a href="{{ route('admin.forgot') }}" class="text-small" style="color: #6777f0">
-                            Esqueceu a senha?
-                            </a>
-                        @endif
-                      </div>
+                    <div class="form-group col-12">
+                      <label>Senha Atual</label>
+                      <input type="password" class="form-control" name="current_password" placeholder="Digite sua senha atual" >
                     </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" value="{{ old('email') }}" required>
-                    @if ($errors->has('password'))
-                        <code>{{ $errors->first('password') }}</code>
-                    @endif
-                  </div>
 
-                  <!--
-                    <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Lembre-me</label>
+                    <div class="form-group col-12">
+                      <label>Nova Senha</label>
+                      <input type="password" class="form-control" name="password" placeholder="Digite a nova senha" >
                     </div>
+
+                    <div class="form-group col-12">
+                      <label>Confirmar Senha</label>
+                      <input type="password" class="form-control" name="password_confirmation" placeholder="Confirme sua senha" >
+                    </div>
+
                   </div>
-                    -->
-
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background: #6777f0" tabindex="4">
-                      Entrar
-                    </button>
-                  </div>
-                </form>
-
-
-              </div>
+                </div>
+                <div class="card-footer text-right">
+                  <button class="btn btn-primary">Salvar</button>
+                </div>
+              </form>
             </div>
-            <!--<div class="mt-5 text-muted text-center" >
-              Não tem uma conta? <a href="auth-register.html" style="color: #fff">Cadastre-se</a>
-            </div>-->
+
+          </div>
+          {{-- FIM BLOCO 2 --}}
+          
             <div class="simple-footer" style="color: #fff">
               Todos os Direitos Reservados &copy; DDH 2024
             </div>

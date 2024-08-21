@@ -22,9 +22,9 @@
           <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon">
             <i class="far fa-user"></i> Perfil
           </a>
-          <a href="features-settings.html" class="dropdown-item has-icon">
+          <!--<a href="features-settings.html" class="dropdown-item has-icon">
             <i class="fas fa-cog"></i> Configurações
-          </a>
+          </a>-->
           <div class="dropdown-divider"></div>
 
           <!-- Authentication -->

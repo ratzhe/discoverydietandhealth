@@ -36,7 +36,7 @@
                   </div>
                 </div>
 
-                <!-- Input de seleção de usuário com  centralizadas -->
+                <!-- Input de seleção de usuário centralizado -->
                 <div class="row">
                     <div class="form-group col">
                       <label for="role">Usuário</label>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary" style="width: 190px;">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100px;">Cadastrar</button>
                 </div>
               </form>
             </div>
@@ -78,8 +78,13 @@
 
 @push('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script>
 $(document).ready(function() {
+    // Aplica a máscara ao campo de telefone
+    $('#phone').mask('(00) 00000-0000');
+
+    // Validação de força da senha
     $("#password").on('keyup', function() {
         var strength = 0;
         var password = $(this).val();
@@ -130,3 +135,4 @@ $(document).ready(function() {
 }
 </style>
 @endpush
+    

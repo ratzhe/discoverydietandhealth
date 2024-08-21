@@ -39,20 +39,15 @@
                       <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
                     </div>
 
-
-
                     <div class="form-group col-md-6 col-12">
                         <label>E-mail</label>
                         <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
                     </div>
 
-
-
-
                   </div>
               </div>
               <div class="card-footer text-right">
-                <button class="btn btn-primary">Salvar</button>
+                <button class="btn btn-primary" style="width: 100px;">Salvar</button>
               </div>
             </form>
           </div>
@@ -90,7 +85,7 @@
                 </div>
               </div>
               <div class="card-footer text-right">
-                <button class="btn btn-primary">Salvar</button>
+                <button class="btn btn-primary" style="width: 100px;">Salvar</button>
               </div>
             </form>
           </div>

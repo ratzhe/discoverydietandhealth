@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <link rel="icon" href="{{ asset('public/backend/assets/img/logoDDH.png') }}" type="image/png">
+  <title>DDH - Discovery Diet & Health</title>
 
   <style>
 
@@ -168,7 +169,7 @@
     margin: 10px auto;
     margin-left: 10%;
     display: block;
-    width: 15%;
+    width: 30%;
     text-align: center;
     text-decoration: none;
     }

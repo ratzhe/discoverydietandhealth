@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <link rel="icon" href="{{ asset('backend/assets/img/logoDDH.png') }}" type="image/png">
   <title>Painel Administrativo &mdash; ddh.com.br</title>
 
   <!-- General CSS Files -->
@@ -82,6 +83,9 @@
   <!-- JS Toastr -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+  <!-- jQuery Mask Plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
   <!-- Template JS File -->
   <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
@@ -93,6 +97,13 @@
         toastr.error("{{ $error }}");
       @endforeach
     @endif
+  </script>
+
+  <!-- Máscara de telefone -->
+  <script>
+    $(document).ready(function() {
+        $('#phone').mask('(00) 00000-0000');
+    });
   </script>
 </body>
 </html>
