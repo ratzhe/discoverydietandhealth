@@ -49,6 +49,52 @@
                 </div>
 
                 <div class="row">
+                    <div class="form-group col-6">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="text" class="form-control" name="cpf" placeholder="999.999.999-99">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="rg">RG</label>
+                        <input id="rg" type="text" class="form-control" name="rg">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="cep">CEP</label>
+                      <input id="cep" type="text" class="form-control" name="cep" placeholder="99999-999">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="street">Rua</label>
+                      <input id="street" type="text" class="form-control" name="street">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="neighborhood">Bairro</label>
+                      <input id="neighborhood" type="text" class="form-control" name="neighborhood">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="city">Cidade</label>
+                      <input id="city" type="text" class="form-control" name="city">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="number">Número</label>
+                      <input id="number" type="text" class="form-control" name="number">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="complement">Complemento</label>
+                      <input id="complement" type="text" class="form-control" name="complement">
+                    </div>
+                  </div>
+
+
+
+                <div class="row">
                   <div class="form-group col-6">
                     <label for="password" class="d-block">Senha</label>
                     <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
@@ -83,6 +129,9 @@
 $(document).ready(function() {
     // Aplica a máscara ao campo de telefone
     $('#phone').mask('(00) 00000-0000');
+
+    // Aplica a máscara ao campo de telefone
+    $('#cpf').mask('000.000.000-00');
 
     // Validação de força da senha
     $("#password").on('keyup', function() {
@@ -135,4 +184,3 @@ $(document).ready(function() {
 }
 </style>
 @endpush
-    
