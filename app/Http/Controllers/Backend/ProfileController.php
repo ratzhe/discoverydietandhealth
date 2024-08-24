@@ -10,8 +10,20 @@ use File;
 
 class ProfileController extends Controller
 {
-    public function index(){
-        return view('admin/profile/index');
+    public function index()
+    {
+        // Verifique o papel do usuário e retorne a visualização apropriada
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return view('admin.profile.index');
+        } elseif ($user->role === 'nutricionist') {
+            return view('nutricionist.profile.index');
+        } elseif ($user->role === 'patient') {
+            return view('patient.profile.index');
+        } else {
+            abort(403, 'Acesso não autorizado.');
+        }
     }
 
     public function update(Request $request){

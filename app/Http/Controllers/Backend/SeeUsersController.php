@@ -20,6 +20,11 @@ class SeeUsersController extends Controller
         return view('admin.seeusers', compact('users'));
     }
 
+    public function seePatients() {
+        $users = User::where('role', 'patient')->get();
+        return view('nutricionist.seepatients', compact('users'));
+    }
+
     public function update(Request $request, $id) {
         // Validar os dados do formulário
         $request->validate([
