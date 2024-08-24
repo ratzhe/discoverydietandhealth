@@ -59,9 +59,16 @@ Route::delete('admin/users/{id}', [SeeUsersController::class, 'destroy'])
 ->middleware(['auth', 'admin'])
 ->name('admin.deleteUser');
 
+// Rota para atualizar usuário
 Route::put('admin/users/{id}', [SeeUsersController::class, 'update'])
 ->middleware(['auth', 'admin'])
 ->name('admin.updateUser');
+
+// Acessar o dashboard do usuário
+Route::get('admin/nutricionist/{id}/dashboard', [AdminController::class, 'nutricionistDashboard'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.nutricionistDashboard');
+
 
 
 

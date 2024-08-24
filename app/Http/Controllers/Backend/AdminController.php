@@ -10,12 +10,13 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function dashboard(){
+        $totalUsers = User::all()->count();
         $totalAdmins = User::where('role', 'admin')->count();
         $totalNutricionist = User::where('role', 'nutricionist')->count();
         $totalPatient = User::where('role', 'patient')->count();
 
         // Passe a contagem para a view
-        return view('admin.dashboard', compact('totalAdmins', 'totalNutricionist', 'totalPatient'));
+        return view('admin.dashboard', compact('totalUsers', 'totalAdmins', 'totalNutricionist', 'totalPatient'));
     }
 
     public function login(){
@@ -49,4 +50,13 @@ class AdminController extends Controller
         return redirect()->route('admin/auth/login');
     }
 
+    // Em App\Http\Controllers\Backend\AdminController
+
+    public function nutricionistDashboard($id) {
+        $nutricionista = User::findOrFail($id); // Obtém o nutricionista pelo ID ou retorna erro 404 se não encontrado
+        // Calcule qualquer dado necessário para o dashboard, por exemplo, total de pacientes
+        $totalPatient = User::where('role', 'patient')->count();
+
+        return view('nutricionist.dashboard', compact('nutricionista', 'totalPatient'));
+    }
 }

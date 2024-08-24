@@ -46,7 +46,7 @@
               <h4>Pacientes</h4>
             </div>
             <div class="card-body">
-              1
+              10
             </div>
           </div>
         </div>

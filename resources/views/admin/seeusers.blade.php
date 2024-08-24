@@ -21,7 +21,7 @@
                             <p class="card-text">Nutricionista</p>
                         @endif
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="{{ route('admin.dashboard', $user->id) }}" class="btn btn-primary mx-1 btn-custom">Dashboard</a>
+                            <a href="{{ route('admin.nutricionistDashboard', $user->id) }}" class="btn btn-primary mx-1 btn-custom">Dashboard</a>
                             <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-success mx-1 btn-custom">Editar</a>
                             <!-- Formulário de exclusão -->
                             <a href="{{ route('admin.deleteUser', $user->id) }}" class="btn btn-danger mx-1 btn-custom" data-method="DELETE" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">Excluir</a>
