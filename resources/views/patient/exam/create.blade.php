@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h2>Criar Novo Exame</h2>
+
+    <div class="card-header">
+        <h4>Carregar Exame</h4>
+    </div>
 
     <!-- Formulário para criar um novo exame -->
     <form action="{{ route('patient.exam.store') }}" method="POST">
@@ -31,4 +34,5 @@
         <button type="submit" class="btn btn-primary">Salvar Exame</button>
     </form>
 </div>
+
 @endsection

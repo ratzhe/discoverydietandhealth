@@ -17,13 +17,15 @@ class ExamController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'file' => 'required|mimes:pdf|max:2048', // Valida que o arquivo é um PDF e tem no máximo 2MB
+        'file' => 'required|mimes:pdf', // Valida que o arquivo é um PDF e tem no máximo 2MB
         'exam_name' => 'required|string|max:255', // Valida que o nome do exame é obrigatório e uma string com no máximo 255 caracteres
         'date' => 'required|date', // Valida que a data do exame é obrigatória e uma data válida
     ]);
 
     $file = $request->file('file');
 
+    // Debug: Verificar tipo MIME
+    //dd($file->getMimeType(), $file->getClientOriginalExtension());
 
     $fileName = time() . '_' . $file->getClientOriginalName();
     $filePath = $file->storeAs('exams', $fileName, 'public');
@@ -38,5 +40,6 @@ class ExamController extends Controller
 
     return redirect()->route('patient.exams.create')->with('success', 'Arquivo carregado com sucesso!');
 }
+
 
 }
