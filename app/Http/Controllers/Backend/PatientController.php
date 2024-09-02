@@ -10,4 +10,8 @@ class PatientController extends Controller
     public function dashboard(){
         return view('patient/dashboard');
     }
+
+    public function exam(){
+        return view('patient/exam/index');
+    }
 }

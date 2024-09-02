@@ -60,7 +60,7 @@
                     </button>
                   </div>
 
-                  <p style="text-align:center;"><a href="{{ route('admin.login') }}" title="Voltar ao Login">Voltar ao Login</p>
+                  <p style="text-align:center;"><a href="{{ route('login') }}" title="Voltar ao Login">Voltar ao Login</p>
                 </form>
 
 

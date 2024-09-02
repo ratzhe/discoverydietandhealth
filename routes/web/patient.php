@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\PatientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\ExamController;
 
 //Rota patient
 Route::get('patient/dashboard', [PatientController::class, 'dashboard'])
@@ -23,4 +24,18 @@ Route::post('patient/profile/update', [ProfileController::class, 'update'])
 Route::post('patient/profile/update/password', [ProfileController::class, 'updatePassword'])
 ->middleware(['auth', 'patient'])
 ->name('patient.profile.password');
+
+//Rota exames
+Route::get('patient/exam', [PatientController::class, 'exam'])
+->middleware(['auth', 'patient'])
+->name('patient.exam.index');
+
+Route::get('patient/exam/create', [ExamController::class, 'create'])
+->middleware(['auth', 'patient'])
+->name('patient.exam.create');
+
+
+Route::post('patient/exam', [ExamController::class, 'store'])
+->middleware(['auth', 'patient'])
+->name('patient.exam.store');
 
