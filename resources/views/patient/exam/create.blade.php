@@ -1,38 +1,31 @@
 @extends('patient.layout.master')
 
 @section('content')
-<div class="container">
-
-    <div class="card-header">
-        <h4>Carregar Exame</h4>
+<div class="container mt-5">
+    <h2>Meus Exames</h2>
+    <div class="row">
+        @foreach($exams as $exam)
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="{{ $exam->file_path ? asset('storage/' . $exam->file_path) : asset('backend/assets/img/file.png') }}"
+                                 class="img-thumbnail"
+                                 alt="Exame Preview"
+                                 style="width: 250px; height: 180px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title">{{ $exam->exam_name }}</h5>
+                        <p class="card-text">Data: {{ $exam->date->format('d/m/Y') }}</p>
+                        <a href="{{ asset('storage/' . $exam->file_path) }}" class="btn btn-primary" target="_blank">Visualizar Exame</a>
+                        <form action="{{ route('patient.exam.deleteExam', $exam->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-
-    <!-- Formulário para criar um novo exame -->
-    <form action="{{ route('patient.exam.store') }}" method="POST">
-        @csrf <!-- Token de segurança para o Laravel -->
-
-        <div class="mb-3">
-            <label for="file" class="form-label">Escolha o arquivo PDF:</label>
-            <input type="file" class="form-control" id="file" name="file" required>
-        </div>
-
-        <div class="form-group">
-            <label for="exam_name">Nome do Exame:</label>
-            <input type="text" class="form-control" id="exam_name" name="exam_name" placeholder="Digite o nome do exame" required>
-        </div>
-
-        <div class="form-group">
-            <label for="description">Descrição:</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Descrição do exame" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="date">Data do Exame:</label>
-            <input type="date" class="form-control" id="date" name="date" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salvar Exame</button>
-    </form>
 </div>
-
 @endsection

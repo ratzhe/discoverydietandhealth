@@ -39,3 +39,8 @@ Route::post('patient/exam', [ExamController::class, 'store'])
 ->middleware(['auth', 'patient'])
 ->name('patient.exam.store');
 
+// Rota para excluir exanme
+Route::delete('patient/exam/{id}', [ExamController::class, 'destroy'])
+->middleware(['auth', 'patient'])
+->name('patient.exam.deleteExam');
+

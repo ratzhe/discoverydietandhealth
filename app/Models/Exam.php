@@ -11,6 +11,10 @@ class Exam extends Model
 
     protected $fillable = ['user_id', 'file_path', 'file_name', 'exam_name', 'date', 'description'];
 
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -33,8 +33,14 @@
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
           </ul>
         </li>
-        <li><a class="nav-link" href="{{ route('patient.exam.create') }}"><i class="far fa-square"></i> <span>Exames</span></a></li>
 
+        <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Exames</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{{ route('patient.exam.create') }}">Ver exames</a></li>
+              <li><a class="nav-link" href="{{ route('patient.exam.index') }}">Carregar exame</a></li>
+            </ul>
+          </li>
 
 
       </aside>
