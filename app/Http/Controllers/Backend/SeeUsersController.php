@@ -15,8 +15,17 @@ class SeeUsersController extends Controller
         return view('admin.editUser', compact('user'));
     }
 
-    public function seeUsers() {
-        $users = User::all(); // Obtenha todos os usuários
+    public function seeUsers(Request $request) {
+        //dd($request->search);
+        //$users = User::all(); // Obtenha todos os usuários
+        $search = $request->search;
+
+        $users = User::where(function ($query) use ($search){
+            if($search){
+                $query->where('email', $search);
+                $query->orWhere('name', 'LIKE', "%{$search}%");
+            }
+        })->get();
         return view('admin.seeusers', compact('users'));
     }
 

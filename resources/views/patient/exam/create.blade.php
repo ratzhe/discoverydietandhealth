@@ -9,7 +9,7 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mb-3">
-                            <img src="{{ $exam->file_path ? asset('storage/' . $exam->file_path) : asset('backend/assets/img/file.png') }}"
+                            <img src="{{ asset('backend/assets/img/file.png') }}"
                                  class="img-thumbnail"
                                  alt="Exame Preview"
                                  style="width: 250px; height: 180px; object-fit: cover;">

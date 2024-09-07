@@ -2,12 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Upload de Exame</h1>
+    <br><br>
+    <h3>Upload de Exame</h3>
 
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
-        </div>  
+        </div>
     @endif
 
     <form action="{{ route('patient.exam.store') }}" method="POST" enctype="multipart/form-data">

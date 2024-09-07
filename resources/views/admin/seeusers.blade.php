@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container mt-5">
+    <h4>Usuários</h4>
+    <form action="{{ route('admin.seeusers') }}" method="get">
+        <input type="text" name="search" placeholder="E-mail">
+        <button>Pesquisar</button>
+    </form>
+
     <div class="row">
         @foreach($users as $user)
             <div class="col-md-4">
