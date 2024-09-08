@@ -3,9 +3,12 @@
 @section('content')
 <div class="container mt-5">
     <h4>Usuários</h4>
-    <form action="{{ route('admin.seeusers') }}" method="get">
-        <input type="text" name="search" placeholder="E-mail">
-        <button>Pesquisar</button>
+    <!-- Filtro de busca -->
+    <form action="{{ route('admin.seeusers') }}" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Buscar por Nome ou E-mail" value="{{ request('search') }}">
+            <button class="btn btn-primary" type="submit">Pesquisar</button>
+        </div>
     </form>
 
     <div class="row">
