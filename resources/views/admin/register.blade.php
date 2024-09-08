@@ -83,6 +83,10 @@
 
                   <div class="row">
                     <div class="form-group col-6">
+                        <label for="state">Estado</label>
+                        <input id="state" type="text" class="form-control" name="state">
+                      </div>
+                    <div class="form-group col-6">
                       <label for="number">Número</label>
                       <input id="number" type="text" class="form-control" name="number">
                     </div>
@@ -125,6 +129,8 @@
 @push('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="backend/assets/js/cep.js"></script>
+
 <script>
 $(document).ready(function() {
     // Aplica a máscara ao campo de telefone

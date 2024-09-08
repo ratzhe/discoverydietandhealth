@@ -58,7 +58,7 @@ $(function() {
   }, now_layout_class = null;
 
   var sidebar_sticky = function() {
-    if($("body").hasClass('layout-2')) {    
+    if($("body").hasClass('layout-2')) {
       $("body.layout-2 #sidebar-wrapper").stick_in_parent({
         parent: $('body')
       });
@@ -256,7 +256,7 @@ $(function() {
         nav_second.find('.sidebar-brand').remove();
         nav_second.removeAttr('class');
         nav_second.addClass(nav_second_classes);
-  
+
         let main_sidebar = $(".navbar-secondary");
         main_sidebar.find('.sidebar-wrapper').addClass('container').removeClass('sidebar-wrapper');
         main_sidebar.find('.sidebar-menu').addClass('navbar-nav').removeClass('sidebar-menu');
@@ -328,7 +328,7 @@ $(function() {
     });
   });
 
-  if($(".chat-content").length) { 
+  if($(".chat-content").length) {
     $(".chat-content").niceScroll({
         cursoropacitymin: .3,
         cursoropacitymax: .8,
@@ -336,7 +336,7 @@ $(function() {
     $('.chat-content').getNiceScroll(0).doScrollTop($('.chat-content').height());
   }
 
-  if(jQuery().summernote) {   
+  if(jQuery().summernote) {
     $(".summernote").summernote({
        dialogsInBody: true,
       minHeight: 250,
@@ -438,7 +438,7 @@ $(function() {
       backgroundImage: 'url("'+ me.data('image') +'")'
     });
   });
-  if(jQuery().Chocolat) { 
+  if(jQuery().Chocolat) {
     $(".gallery").Chocolat({
       className: 'gallery',
       imageSelector: '.gallery-item',
@@ -525,7 +525,7 @@ $(function() {
       width: $(this).data('width')
     });
   });
-  
+
   // Height attribute
   $('[data-height]').each(function() {
     $(this).css({
@@ -582,3 +582,40 @@ $(function() {
     });
   }
 });
+
+function buscaCep() {
+    let cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remove a máscara do CEP
+    if (cep !== "" && cep.length === 8) { // Verifica se o CEP tem 8 dígitos
+        console.log(cep);
+        let url = "https://brasilapi.com.br/api/cep/v1/" + cep;
+
+        let req = new XMLHttpRequest();
+        req.open("GET", url);
+        req.send();
+
+        // Tratar a resposta da requisição
+        req.onload = function () {
+            if (req.status === 200) {
+                let endereco = JSON.parse(req.response);
+                console.log(endereco);
+                // Preencher os campos com o resultado da API
+                document.getElementById("street").value = endereco.street;
+                document.getElementById("city").value = endereco.city;
+                document.getElementById("neighborhood").value = endereco.neighborhood;
+                document.getElementById("state").value = endereco.state;
+            } else if (req.status === 404) {
+                alert("CEP não encontrado!");
+            } else {
+                alert("Erro ao fazer a requisição!");
+            }
+        };
+    } else {
+        alert("Por favor, insira um CEP válido com 8 dígitos.");
+    }
+}
+
+window.onload = function () {
+    let cep = document.getElementById("cep");
+    cep.addEventListener("change", buscaCep);
+};
+

@@ -29,8 +29,16 @@ class SeeUsersController extends Controller
         return view('admin.seeusers', compact('users'));
     }
 
-    public function seePatients() {
-        $users = User::where('role', 'patient')->get();
+    public function seePatients(Request $request) {
+        $search = $request->search;
+        $users = User::where('role', 'patient')
+            ->where(function ($query) use ($search) {
+                if ($search) {
+                    $query->where('email', 'LIKE', "%{$search}%")
+                          ->orWhere('name', 'LIKE', "%{$search}%");
+                }
+            })->get();
+
         return view('nutricionist.seepatients', compact('users'));
     }
 
