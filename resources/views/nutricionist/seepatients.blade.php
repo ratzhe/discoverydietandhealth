@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container mt-5">
+    <h4>Paciente</h4>
+    <!-- Filtro de busca -->
+    <form action="{{ route('nutricionist.seepatients') }}" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Buscar por Nome ou E-mail" value="{{ request('search') }}">
+            <button class="btn btn-primary" type="submit">Pesquisar</button>
+        </div>
+    </form>
     <div class="row">
         @foreach($users as $user)
             @if ($user->role == 'patient') <!-- Adiciona a condição para exibir apenas pacientes -->
