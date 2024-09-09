@@ -41,7 +41,7 @@
 
                     <div class="form-group col-md-6 col-12">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
+                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" disabled>
                     </div>
 
                   </div>
