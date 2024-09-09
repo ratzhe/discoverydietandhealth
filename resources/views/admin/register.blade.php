@@ -139,6 +139,8 @@ $(document).ready(function() {
     // Aplica a máscara ao campo de telefone
     $('#cpf').mask('000.000.000-00');
 
+    
+
     // Validação de força da senha
     $("#password").on('keyup', function() {
         var strength = 0;
