@@ -50,9 +50,61 @@
                 </div>
 
                 <div class="row">
+                    <div class="form-group col-4">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="text" class="form-control" name="cpf" placeholder="000.000.000-00" value="{{ old('cpf', $user->cpf) }}">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="rg">RG</label>
+                        <input id="rg" type="text" class="form-control" name="rg" placeholder="00.000.000-0" value="{{ old('rg', $user->rg) }}">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="datebirth">Data de Nascimento</label>
+                        <input id="datebirth" type="date" class="form-control" name="datebirth" value="{{ old('datebirth', $user->datebirth) }}">
+                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="cep">CEP</label>
+                      <input id="cep" type="text" class="form-control" name="cep" placeholder="00000-000" value="{{ old('cep', $user->address->cep) }}">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="street">Rua</label>
+                      <input id="street" type="text" class="form-control" name="street" value="{{ old('street', $user->address->street) }}">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="neighborhood">Bairro</label>
+                      <input id="neighborhood" type="text" class="form-control" name="neighborhood" value="{{ old('neighborhood', $user->address->neighborhood) }}">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="city">Cidade</label>
+                      <input id="city" type="text" class="form-control" name="city" value="{{ old('city', $user->address->city) }}">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                        <label for="state">Estado</label>
+                        <input id="state" type="text" class="form-control" name="state" value="{{ old('state', $user->address->state) }}">
+                      </div>
+                    <div class="form-group col-6">
+                      <label for="number">Número</label>
+                      <input id="number" type="text" class="form-control" name="number" value="{{ old('number', $user->address->number) }}">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="complement">Complemento</label>
+                      <input id="complement" type="text" class="form-control" name="complement" value="{{ old('complement', $user->address->complement) }}">
+                    </div>
+                  </div>
+
+                <div class="row">
                   <div class="form-group col-6">
                     <label for="password" class="d-block">Senha</label>
-                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" value="{{ old('password', $user->password) }}">
                     <div id="pwindicator" class="pwindicator">
                       <div class="bar"></div>
                       <div class="label"></div>
@@ -60,7 +112,7 @@
                   </div>
                   <div class="form-group col-6">
                     <label for="password_confirmation" class="d-block">Confirme a senha</label>
-                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation', $user->password_confirmation)}}">
                   </div>
                 </div>
 
