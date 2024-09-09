@@ -32,7 +32,7 @@
                   </div>
                   <div class="form-group col-6">
                       <label for="phone">Telefone</label>
-                      <input id="phone" type="text" class="form-control" name="phone" placeholder="(99) 99999-9999">
+                      <input id="phone" type="text" class="form-control" name="phone" placeholder="(00) 00000-0000">
                   </div>
                 </div>
 
@@ -49,20 +49,24 @@
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label for="cpf">CPF</label>
-                        <input id="cpf" type="text" class="form-control" name="cpf" placeholder="999.999.999-99">
+                        <input id="cpf" type="text" class="form-control" name="cpf" placeholder="000.000.000-00">
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label for="rg">RG</label>
-                        <input id="rg" type="text" class="form-control" name="rg">
+                        <input id="rg" type="text" class="form-control" name="rg" placeholder="00.000.000-0">
                     </div>
+                    <div class="form-group col-4">
+                        <label for="datebirth">Data de Nascimento</label>
+                        <input id="datebirth" type="date" class="form-control" name="datebirth">
+                      </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-6">
                       <label for="cep">CEP</label>
-                      <input id="cep" type="text" class="form-control" name="cep" placeholder="99999-999">
+                      <input id="cep" type="text" class="form-control" name="cep" placeholder="00000-000">
                     </div>
                     <div class="form-group col-6">
                       <label for="street">Rua</label>
@@ -136,10 +140,11 @@ $(document).ready(function() {
     // Aplica a máscara ao campo de telefone
     $('#phone').mask('(00) 00000-0000');
 
-    // Aplica a máscara ao campo de telefone
+    // Aplica a máscara ao campo de cpf
     $('#cpf').mask('000.000.000-00');
 
-    
+    // Aplica a máscara ao campo de rg
+    $('#rg').mask('00.000.000-0');
 
     // Validação de força da senha
     $("#password").on('keyup', function() {

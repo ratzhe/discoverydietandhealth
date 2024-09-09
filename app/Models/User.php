@@ -22,6 +22,7 @@ class User extends Authenticatable
         'phone',
         'cpf',
         'rg',
+        'datebirth',
         'password',
         'role', // Caso você também queira armazenar o papel do usuário (admin, nutricionista, paciente)
     ];
