@@ -50,11 +50,8 @@ class AdminController extends Controller
         return redirect()->route('admin/auth/login');
     }
 
-    // Em App\Http\Controllers\Backend\AdminController
-
     public function nutricionistDashboard($id) {
         $nutricionista = User::findOrFail($id); // Obtém o nutricionista pelo ID ou retorna erro 404 se não encontrado
-        // Calcule qualquer dado necessário para o dashboard, por exemplo, total de pacientes
         $totalPatient = User::where('role', 'patient')->count();
 
         return view('nutricionist.dashboard', compact('nutricionista', 'totalPatient'));

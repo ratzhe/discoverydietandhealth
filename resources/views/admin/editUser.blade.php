@@ -128,3 +128,51 @@
   </section>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="backend/assets/js/cep.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Aplica a máscara ao campo de telefone
+    $('#phone').mask('(00) 00000-0000');
+
+    $('#cep').mask('00000-000');
+    
+    // Aplica a máscara ao campo de cpf
+    $('#cpf').mask('000.000.000-00');
+
+    // Aplica a máscara ao campo de rg
+    $('#rg').mask('00.000.000-0');
+
+    // Validação de força da senha
+    $("#password").on('keyup', function() {
+        var strength = 0;
+        var password = $(this).val();
+
+        // Critérios de validação
+        if (password.length >= 8) strength += 1;
+        if (password.match(/(?=.*[a-z])(?=.*[A-Z])/)) strength += 1;
+        if (password.match(/(?=.*[0-9])/)) strength += 1;
+        if (password.match(/(?=.*[!@#$%^&*])/)) strength += 1;
+
+        // Atualizar o indicador de força
+        var pwindicator = $("#pwindicator");
+        pwindicator.removeClass();
+        pwindicator.addClass('pwindicator');
+
+        if (strength === 1) {
+            pwindicator.addClass('bg-danger').text('Fraca');
+        } else if (strength === 2) {
+            pwindicator.addClass('bg-warning').text('Média');
+        } else if (strength >= 3) {
+            pwindicator.addClass('bg-success').text('Forte');
+        } else {
+            pwindicator.text('');
+        }
+    });
+});
+</script>
+@endpush

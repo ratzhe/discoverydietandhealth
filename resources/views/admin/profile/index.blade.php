@@ -31,17 +31,72 @@
                             @endif
                         </div>
                         <label>Foto de Perfil</label>
-                        <input type="file" class="form-control" name="image" >
+                        <input id="image" type="file" class="form-control" name="image" >
                     </div>
 
                     <div class="form-group col-md-6 col-12">
                       <label>Nome</label>
-                      <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
+                      <input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
                     </div>
 
                     <div class="form-group col-md-6 col-12">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required="">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" disabled>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="phone">Telefone</label>
+                        <input id="phone" type="text" class="form-control" name="phone" placeholder="(00) 00000-0000" value="{{ Auth::user()->phone }}" >
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>CPF</label>
+                        <input id="cpf" type="text" class="form-control" name="cpf" value="{{ Auth::user()->cpf }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>RG</label>
+                        <input id="rg" type="text" class="form-control" name="rg" value="{{ Auth::user()->rg }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Data de Nascimento</label>
+                        <input id="datebirth" type="date" class="form-control" name="datebirth" value="{{ Auth::user()->datebirth }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>CEP</label>
+                        <input id="cep" type="text" class="form-control" name="cep" placeholder="00000-000" value="{{ Auth::user()->address->cep }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Rua</label>
+                        <input id="street" type="text" class="form-control" name="street" value="{{ Auth::user()->address->street }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Bairro</label>
+                        <input id="neighborhood" type="text" class="form-control" name="neighborhood" value="{{ Auth::user()->address->neighborhood }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Cidade</label>
+                        <input id="city" type="text" class="form-control" name="city" value="{{ Auth::user()->address->city }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Estado</label>
+                        <input id="state" type="text" class="form-control" name="state" value="{{ Auth::user()->address->state }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Número</label>
+                        <input id="number" type="text" class="form-control" name="number" value="{{ Auth::user()->address->number }}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6 col-12">
+                        <label>Complemento</label>
+                        <input id="complement" type="text" class="form-control" name="complement" value="{{ Auth::user()->address->complement }}" required="">
                     </div>
 
                   </div>
@@ -97,3 +152,17 @@
     </div>
   </section>
 @endsection
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="backend/assets/js/cep.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Aplica a máscara ao campo de telefone
+        $('#phone').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+    });
+    </script>
+    @endpush

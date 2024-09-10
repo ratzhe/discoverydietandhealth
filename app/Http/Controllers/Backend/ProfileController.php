@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Faker\Core\File as CoreFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
@@ -26,61 +25,89 @@ class ProfileController extends Controller
         }
     }
 
-    public function update(Request $request){
-        //dd($request->all());
-        $request->validate([
-            'name' => ['required', 'max:100'],
-            'email' => ['required', 'email', 'unique:users,email,' .Auth::user()->id],
-            'image' => ['image', 'max:2048'],
+    public function update(Request $request)
+{
+    // Validação dos dados
+    $request->validate([
+        'name' => ['max:100'],
+        'image' => ['image', 'max:2048'],
+        'phone' => ['nullable', 'string'],
+        'datebirth' => ['nullable', 'date'],
+        'cep' => ['nullable', 'string'],
+        'street' => ['nullable', 'string'],
+        'neighborhood' => ['nullable', 'string'],
+        'city' => ['nullable', 'string'],
+        'state' => ['nullable', 'string', 'size:2'],
+        'number' => ['nullable', 'string'],
+        'complement' => ['nullable', 'string'],
+    ]);
 
+    $user = Auth::user();
 
-        ]);
-
-        $user = Auth::user();
-        if($request->hasFile('image')){
-            if(File::exists(public_path($user->image))){
-                File::delete(public_path($user->image));
-            }
-
-            // Apaga as imagens que ficam na pasta temporária
-            //if(file_exists($image) && is_dir($image)){
-              //  unlink($image);
-            //}
+    // Verifica se uma nova imagem foi enviada e deleta a anterior
+    if ($request->hasFile('image')) {
+        if (File::exists(public_path($user->image))) {
+            File::delete(public_path($user->image));
         }
 
-        if($request->hasFile('image')){
-            $image = $request->image;
-            $imageName = rand() . '-ddh-' . $image->getClientOriginalName();
-            $image->move(public_path('uploads'), $imageName);
+        // Move a nova imagem para a pasta uploads
+        $image = $request->image;
+        $imageName = rand() . '-ddh-' . $image->getClientOriginalName();
+        $image->move(public_path('uploads'), $imageName);
 
-            // caminho da pasta de imagens
-            $path = "/uploads/" . $imageName;
-
-            $user->image = $path;
-        }
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-
-        toastr()->success('Dados atualizados com sucesso!');
-        //return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
-        return redirect()->back();
+        // Define o caminho da nova imagem
+        $user->image = "/uploads/" . $imageName;
     }
 
-    public function updatePassword(Request $request){
+    // Atualiza os dados do usuário
+    $user->name = $request->name;
+    $user->name = $request->name;
+    $user->phone = $request->phone;
+    $user->datebirth = $request->datebirth;
+    $user->save();
+
+    // Atualiza os dados do endereço relacionado ou cria um novo se não existir
+    $address = $user->address()->first();
+    if ($address) {
+        $address->update([
+            'cep' => $request->cep,
+            'street' => $request->street,
+            'neighborhood' => $request->neighborhood,
+            'city' => $request->city,
+            'state' => $request->state,
+            'number' => $request->number,
+            'complement' => $request->complement,
+        ]);
+    } else {
+        $user->address()->create([
+            'cep' => $request->cep,
+            'street' => $request->street,
+            'neighborhood' => $request->neighborhood,
+            'city' => $request->city,
+            'state' => $request->state,
+            'number' => $request->number,
+            'complement' => $request->complement,
+        ]);
+    }
+
+    toastr()->success('Dados atualizados com sucesso!');
+    return redirect()->back();
+}
+
+    public function updatePassword(Request $request)
+    {
+        // Validação da senha
         $request->validate([
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
+        // Atualiza a senha do usuário
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);
 
-        //return redirect()->back()->with('success', 'Senha alterada com sucesso!');
         toastr()->success('Senha alterada com sucesso!');
         return redirect()->back();
     }
-
 }
