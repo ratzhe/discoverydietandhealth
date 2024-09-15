@@ -30,3 +30,8 @@ Route::post('nutricionist/profile/update/password', [ProfileController::class, '
 Route::get('nutricionist/users/see', [SeeUsersController::class, 'seePatients'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.seepatients');
+
+// Ver relatório
+Route::get('nutricionist/relatorio', [SeeUsersController::class, 'seerelatorio'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.relatorio');
