@@ -30,3 +30,28 @@ Route::post('nutricionist/profile/update/password', [ProfileController::class, '
 Route::get('nutricionist/users/see', [SeeUsersController::class, 'seePatients'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.seepatients');
+
+//Rota nutricionista
+Route::get('nutricionist/anamnese/dashboard', [NutricionistController::class, 'anamneseDashboard'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.dashboard');
+
+//Rota nutricionista
+Route::get('nutricionist/anamnese/create', [NutricionistController::class, 'showAnamneseForm'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.create');
+
+Route::post('nutricionist/anamnese/store', [NutricionistController::class, 'anamneseCreate'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.store');
+
+Route::post('nutricionist/anamnese/update/{id}', [NutricionistController::class, 'update'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamnese.update');
+
+Route::get('nutricionist/anamnese/edit/{id}', [NutricionistController::class, 'showAnamneseEditForm'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamnese.edit');
+
+
+
