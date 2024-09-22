@@ -62,6 +62,14 @@
                         <label for="datebirth">Data de Nascimento</label>
                         <input id="datebirth" type="date" class="form-control" name="datebirth" value="{{ old('datebirth', $user->datebirth) }}">
                       </div>
+
+                      <div class="form-group col-4">
+                        <label for="salario">Salário</label>
+                        <input id="salario" type="text" class="form-control" name="salario"
+                               value="{{ old('salario',
+                                   $user->salario <= 5000 ? 'Baixo' :
+                                   ($user->salario <= 10000 ? 'Médio' : 'Alto')) }}" disabled>
+                    </div>
                   </div>
 
                   <div class="row">
@@ -140,7 +148,7 @@ $(document).ready(function() {
     $('#phone').mask('(00) 00000-0000');
 
     $('#cep').mask('00000-000');
-    
+
     // Aplica a máscara ao campo de cpf
     $('#cpf').mask('000.000.000-00');
 
@@ -176,3 +184,5 @@ $(document).ready(function() {
 });
 </script>
 @endpush
+
+

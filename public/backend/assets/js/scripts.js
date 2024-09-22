@@ -593,12 +593,12 @@ function buscaCep() {
         req.open("GET", url);
         req.send();
 
-        // Tratar a resposta da requisição
+        // Trata a resposta da requisição
         req.onload = function () {
             if (req.status === 200) {
                 let endereco = JSON.parse(req.response);
                 console.log(endereco);
-                // Preencher os campos com o resultado da API
+                // Preenche os campos com o resultado da API
                 document.getElementById("street").value = endereco.street;
                 document.getElementById("city").value = endereco.city;
                 document.getElementById("neighborhood").value = endereco.neighborhood;

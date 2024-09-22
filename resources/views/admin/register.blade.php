@@ -34,6 +34,11 @@
                       <label for="phone">Telefone</label>
                       <input id="phone" type="text" class="form-control" name="phone" placeholder="(00) 00000-0000">
                   </div>
+
+                  <div class="form-group col-6">
+                    <label for="salario">Salário</label>
+                    <input id="salario" type="text" class="form-control" name="salario">
+                </div>
                 </div>
 
                 <!-- Input de seleção de usuário centralizado -->

@@ -39,8 +39,13 @@ Route::post('patient/exam', [ExamController::class, 'store'])
 ->middleware(['auth', 'patient'])
 ->name('patient.exam.store');
 
-// Rota para excluir exanme
+// Rota para excluir exame
 Route::delete('patient/exam/{id}', [ExamController::class, 'destroy'])
 ->middleware(['auth', 'patient'])
 ->name('patient.exam.deleteExam');
 
+// adicionar campo salario mostar no editar
+//
+// se =  5000 baixo
+// 5001 e 10000 = medio
+// mais 10000 = alto
