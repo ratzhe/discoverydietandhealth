@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'cpf',
+        'salario',
         'rg',
         'datebirth',
         'password',
@@ -59,4 +60,26 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+
+    public function anamnesesAsPatient()
+    {
+        return $this->hasMany(Anamnese::class, 'patient_id');
+    }
+
+    /**
+     * Define the relationship with the Anamnese model (as a nutricionista).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function anamnesesAsNutricionist()
+    {
+        return $this->hasMany(Anamnese::class, 'user_id');
+    }
+
+    // No modelo User.php
+    public function anamnese()
+    {
+        return $this->hasOne(Anamnese::class);
+    }
+
 }

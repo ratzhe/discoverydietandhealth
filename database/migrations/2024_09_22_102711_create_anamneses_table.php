@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('anamneses', function (Blueprint $table) {
             $table->id();
 
-            // Referencia para a tabela 'users'
-            $table->foreignId('patient_id')->constrained('users')->onDelete('cascade'); // Referencia para o paciente
-            $table->foreignId('nutricionist_id')->constrained('users')->onDelete('cascade'); // Referencia para o nutricionista
+            $table->foreignId('patient_id')->constrained('users')->onDelete('cascade'); // Referencia correta para a tabela 'users'
+            $table->foreignId('nutricionist_id')->constrained('users')->onDelete('cascade'); // Referencia correta para a tabela 'users'
 
             // Campos específicos da anamnese
             $table->float('weight')->nullable();

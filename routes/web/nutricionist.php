@@ -31,7 +31,70 @@ Route::get('nutricionist/users/see', [SeeUsersController::class, 'seePatients'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.seepatients');
 
+//Rota nutricionistaa
+Route::get('nutricionist/anamnese/dashboard', [NutricionistController::class, 'anamneseDashboard'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.dashboard');
+
+//Rota nutricionista
+Route::get('nutricionist/anamnese/create', [NutricionistController::class, 'showAnamneseForm'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.create');
+
+Route::post('nutricionist/anamnese/store', [NutricionistController::class, 'anamneseCreate'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.store');
+
+Route::put('nutricionist/anamnese/update/{id}', [NutricionistController::class, 'update'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamnese.update');
+
+Route::get('nutricionist/anamnese/edit/{id}', [NutricionistController::class, 'showAnamneseEdit'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamnese.edit');
+
 // Ver relatório
 Route::get('nutricionist/relatorio', [SeeUsersController::class, 'seerelatorio'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.relatorio');
+
+// Rota para excluir usuário
+Route::delete('nutricionist/ananmese/{id}', [NutricionistController::class, 'destroy'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.anamnese.delete');
+
+// Rota nutricionista para o dashboard de antropometria
+Route::get('nutricionist/antropometria/dashboard', [NutricionistController::class, 'antropometriaDashboard'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.dashboard');
+
+// Rota para mostrar o formulário de criação de antropometria
+Route::get('nutricionist/antropometria/create', [NutricionistController::class, 'showAntropometriaForm'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.create');
+
+// Rota para armazenar dados de antropometria
+Route::post('nutricionist/antropometria/store', [NutricionistController::class, 'antropometriaCreate'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.store');
+
+// Rota para mostrar o formulário de edição de antropometria
+Route::get('nutricionist/antropometria/edit/{id}', [NutricionistController::class, 'showAntropometriaEditForm'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.edit');
+
+// Rota para atualizar os dados de antropometria
+Route::put('nutricionist/antropometria/update/{id}', [NutricionistController::class, 'antropometriaUpdate'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.update');
+
+// Rota para excluir antropometria
+Route::delete('nutricionist/antropometria/{id}', [NutricionistController::class, 'antropometriaDestroy'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.delete');
+
+Route::get('nutricionist/antropometria/see', [NutricionistController::class, 'seeAntropometria'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria.index');
+
+

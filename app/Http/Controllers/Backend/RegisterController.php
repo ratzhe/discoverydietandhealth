@@ -50,6 +50,7 @@ class RegisterController extends Controller
             'cpf' => ['required', 'string', 'size:14'], // Ex: 000.000.000-00
             'rg' => ['required', 'string', 'size:12'], // Ex: 00.000.000-0
             'datebirth' => ['required', 'date'],
+            'salario' => ['string'],
             // Validações para os campos de endereço
             'cep' => ['required', 'string', 'size:9'], // Ex: 99999-999
             'street' => ['required', 'string', 'max:255'],
@@ -66,6 +67,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'phone' => $request->phone,
+            'salario' => $request->salario,
             'role' => $request->role,
             'password' => Hash::make($request->password),
             'cpf' => $request->cpf,
