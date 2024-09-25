@@ -17,7 +17,7 @@
 
                 <!-- Seleção de Paciente -->
                 <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-9">
                       <label for="patient">Selecione o Paciente</label>
                       <select id="patient" class="form-control" name="patient_id">
                         @foreach($patients as $patient)
@@ -25,6 +25,11 @@
                         @endforeach
                       </select>
                     </div>
+
+                    <div class="form-group col-3">
+                        <label for="anamnese_date">Data</label>
+                        <input id="anamnese_date" type="date" class="form-control" name="anamnese_date" required>
+                      </div>
                 </div>
 
                 <div class="row">

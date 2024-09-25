@@ -23,7 +23,7 @@
               <li><a class="nav-link" href="{{ route('nutricionist.anamnese.dashboard') }}">Anamnese</a></li>
               <li><a class="nav-link" href="layout-transparent.html">Plano Alimentar</a></li>
               <li><a class="nav-link" href="layout-top-navigation.html">Avaliação Laboratorial</a></li>
-              <li><a class="nav-link" href="layout-top-navigation.html">Antropometria</a></li>
+              <li><a class="nav-link" href="{{ route('nutricionist.antropometria.dashboard') }}">Antropometria</a></li>
             </ul>
         </li>
 

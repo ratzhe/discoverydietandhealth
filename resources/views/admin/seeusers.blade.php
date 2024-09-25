@@ -13,7 +13,7 @@
 
     <div class="row">
         @foreach($users as $user)
-            <div class="col-md-4">
+            <div class="col-md-4">a
                 <div class="card mb-4 text-center">
                     <div class="card-body">
                         <img src="{{ $user->image ? $user->image : asset('backend/assets/img/avatar/avatar-1.png') }}"

@@ -11,7 +11,8 @@ class Anamnese extends Model
 
     protected $fillable = [
         'patient_id',
-        'user_id',
+        'nutricionist_id',
+        'anamnese_date',
         'weight',
         'height',
         'diseases',
