@@ -84,4 +84,8 @@ class SeeUsersController extends Controller
         toastr()->success('Usuário excluído com sucesso!');
         return redirect()->route('admin.seeusers');
     }
+
+    public function seerelatorio() {
+        return view('nutricionist.relatorio');
+    }
 }
