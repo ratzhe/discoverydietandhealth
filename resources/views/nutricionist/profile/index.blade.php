@@ -14,16 +14,6 @@
         {{-- INICIO BLOCO 1 --}}
         <div class="col-12 col-md-12 col-lg-7">
 
-            <form action="{{ route('switchLang') }}" method="POST" class="mb-3">
-                @csrf
-                <div class="input-group">
-                    <select name="locale" class="form-control" onchange="this.form.submit()">
-                        <option value="pt-BR" {{ app()->getLocale() == 'pt-BR' ? 'selected' : '' }}>Português</option>
-                        <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                    </select>
-                </div>
-            </form>
-
           <div class="card">
             <form action="{{ route('nutricionist.profile.update') }}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf

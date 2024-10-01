@@ -11,11 +11,15 @@
 
             <form action="{{ route('switchLang') }}" method="POST" class="mb-3">
                 @csrf
-                <div class="input-group">
-                    <select name="locale" class="form-control" onchange="this.form.submit()">
-                        <option value="pt-BR" {{ app()->getLocale() == 'pt-BR' ? 'selected' : '' }}>Português</option>
-                        <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                    </select>
+                <div class="d-flex justify-content-end">
+                    <div class="btn-group" role="group">
+                        <button type="submit" name="locale" value="pt_BR" class="btn {{ app()->getLocale() == 'pt_BR' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                            PT
+                        </button>
+                        <button type="submit" name="locale" value="en" class="btn {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                            EN
+                        </button>
+                    </div>
                 </div>
             </form>
 
@@ -46,10 +50,6 @@
                       <input id="phone" type="text" class="form-control" name="phone" placeholder="(00) 00000-0000">
                   </div>
 
-                  <div class="form-group col-6">
-                    <label for="salario">{{ __('register.form.salary') }}</label>
-                    <input id="salario" type="text" class="form-control" name="salario">
-                </div>
                 </div>
 
                 <div class="row">

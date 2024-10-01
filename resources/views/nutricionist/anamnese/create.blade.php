@@ -11,14 +11,18 @@
 
           <!-- Botão para troca de idioma -->
         <form action="{{ route('switchLang') }}" method="POST" class="mb-3">
-            @csrf
-            <div class="input-group">
-                <select name="locale" class="form-control" onchange="this.form.submit()">
-                    <option value="pt-BR" {{ app()->getLocale() == 'pt-BR' ? 'selected' : '' }}>Português</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                </select>
-            </div>
-        </form>
+          @csrf
+          <div class="d-flex justify-content-end">
+              <div class="btn-group" role="group">
+                  <button type="submit" name="locale" value="pt_BR" class="btn {{ app()->getLocale() == 'pt_BR' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                      PT
+                  </button>
+                  <button type="submit" name="locale" value="en" class="btn {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                      EN
+                  </button>
+              </div>
+          </div>
+      </form>
 
           <div class="card card-primary">
             <div class="card-header"><h4>{{ __('anamnese.title') }}</h4></div>

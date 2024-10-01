@@ -1,4 +1,4 @@
-s<?php
+<?php
 
 namespace App\Http\Controllers\Backend;
 
@@ -50,7 +50,7 @@ class SeeUsersController extends Controller
             'email' => ['sometimes', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $id],
             'username' => ['sometimes', 'string', 'max:255'],
             'phone' => ['sometimes', 'string'],
-            'salario' => ['sometimes', 'string'],
+            //'salario' => ['sometimes', 'string'],
             'role' => ['sometimes', 'string', 'in:admin,nutricionist,trainer,patient'],
             'password' => ['sometimes', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -63,7 +63,7 @@ class SeeUsersController extends Controller
         $user->username = $request->input('username', $user->username);
         $user->phone = $request->input('phone', $user->phone);
         $user->role = $request->input('role', $user->role);
-        $user->salario = $request->input('salario', $user->salario);
+        //$user->salario = $request->input('salario', $user->salario);
 
         // Atualiza a senha somente se for fornecida
         if ($request->filled('password')) {

@@ -21,7 +21,6 @@ class User extends Authenticatable
         'email',
         'phone',
         'cpf',
-        'salario',
         'rg',
         'datebirth',
         'password',
