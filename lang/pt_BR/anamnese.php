@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'title' => 'Nova Anamnese Nutricional',
+    'select_patient' => 'Selecione o Paciente',
+    'date' => 'Data',
+    'weight' => 'Peso (kg)',
+    'height' => 'Altura (cm)',
+    'diseases' => 'Doenças diagnosticadas',
+    'allergies' => 'Alergias/Intolerâncias',
+    'medications' => 'Medicamentos em uso',
+    'family_history' => 'Histórico familiar de doenças',
+    'meals_per_day' => 'Número de refeições diárias',
+    'water_intake' => 'Consumo de água diário (litros)',
+    'alcohol' => 'Consumo de bebidas alcoólicas',
+    'caffeine' => 'Consumo de cafeína',
+    'exercise' => 'Pratica atividade física?',
+    'exercise_frequency' => 'Frequência semanal',
+    'snacks' => 'Faz lanches entre as refeições?',
+    'diet_history' => 'Relato de dietas anteriores',
+    'short_term_goal' => 'Objetivo a curto prazo',
+    'long_term_goal' => 'Objetivo a longo prazo',
+    'submit' => 'Cadastrar',
+    'no' => 'Não',
+    'yes' => 'Sim',
+];

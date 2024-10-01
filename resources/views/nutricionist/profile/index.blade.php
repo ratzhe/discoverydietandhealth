@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-      <h1>Meus dados</h1>
+      <h1>{{ __('profile.my_data') }}</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('nutricionist.dashboard') }}">Painel</a></div>
         <div class="breadcrumb-item">Perfil</div>
@@ -13,6 +13,16 @@
       <div class="row mt-sm-4 d-flex justify-content-center">
         {{-- INICIO BLOCO 1 --}}
         <div class="col-12 col-md-12 col-lg-7">
+
+            <form action="{{ route('switchLang') }}" method="POST" class="mb-3">
+                @csrf
+                <div class="input-group">
+                    <select name="locale" class="form-control" onchange="this.form.submit()">
+                        <option value="pt-BR" {{ app()->getLocale() == 'pt-BR' ? 'selected' : '' }}>Português</option>
+                        <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    </select>
+                </div>
+            </form>
 
           <div class="card">
             <form action="{{ route('nutricionist.profile.update') }}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">

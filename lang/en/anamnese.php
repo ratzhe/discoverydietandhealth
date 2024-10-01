@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'title' => 'New Nutritional Anamnesis',
+    'select_patient' => 'Select the Patient',
+    'date' => 'Date',
+    'weight' => 'Weight (kg)',
+    'height' => 'Height (cm)',
+    'diseases' => 'Diagnosed Diseases',
+    'allergies' => 'Allergies/Intolerances',
+    'medications' => 'Current Medications',
+    'family_history' => 'Family Medical History',
+    'meals_per_day' => 'Number of Daily Meals',
+    'water_intake' => 'Daily Water Intake (liters)',
+    'alcohol' => 'Alcohol Consumption',
+    'caffeine' => 'Caffeine Consumption',
+    'exercise' => 'Do you exercise?',
+    'exercise_frequency' => 'Weekly Frequency',
+    'snacks' => 'Do you snack between meals?',
+    'diet_history' => 'Previous Diets',
+    'short_term_goal' => 'Short-term Goal',
+    'long_term_goal' => 'Long-term Goal',
+    'submit' => 'Submit',
+    'no' => 'No',
+    'yes' => 'Yes',
+];
