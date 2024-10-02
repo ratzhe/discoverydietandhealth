@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Anamnese;
 use App\Models\Antropometria;
+use App\Models\Mealplan;
 
 class NutricionistController extends Controller
 {
@@ -249,6 +250,112 @@ class NutricionistController extends Controller
             }
         })->get();
         return view('nutricionist.antropometria.index', compact('users'));
+    }
+
+    // Plano alimentar
+    public function mealplanDashboard()
+    {
+        // Busque os planos alimentares com os pacientes e nutricionistas relacionados
+        $antropometriaList = Antropometria::with(['patient', 'nutricionist'])->get();
+        return view('nutricionist.mealplan.dashboard', compact('mealplanList'));
+    }
+
+    public function showmealplanForm()
+    {
+        $patients = User::where('role', 'patient')->get();
+        return view('nutricionist.mealplan.create', compact('patients'));
+    }
+
+
+    public function mealplanCreate(Request $request)
+    {
+        $request->validate([
+            'patient_id' => 'required|exists:users,id',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'antropometria_date' => 'required|date',
+            'waist_circumference' => 'required|numeric',
+            'hip_circumference' => 'required|numeric',
+            'bmi' => 'required|numeric',
+            'body_fat' => 'required|numeric'
+
+        ]);
+
+        $mealplan = new Mealplan();
+        $mealplan->patient_id = $request->input('patient_id');
+        $mealplan->nutricionist_id = Auth::id(); // ID do nutricionista logado
+        $mealplan->antropometria_date = $request->input('antropometria_date');
+        $mealplan->weight = $request->input('weight');
+        $mealplan->height = $request->input('height');
+        $mealplan->waist_circumference = $request->input('waist_circumference');
+        $mealplan->hip_circumference = $request->input('hip_circumference');
+        $mealplan->skinfold_tricep = $request->input('skinfold_tricep');
+        $mealplan->skinfold_subscapular = $request->input('skinfold_subscapular');
+        $mealplan->bmi = $request->input('bmi');
+        $mealplan->body_fat = $request->input('body_fat');
+        $mealplan->save();
+
+        return redirect()->route('nutricionist.mealplan.dashboard')->with('success', 'Plano alimentar cadastrado com sucesso!');
+    }
+
+    public function showmealplanEditForm($id)
+    {
+        $mealplan = Mealplan::findOrFail($id);
+        $patients = User::where('role', 'patient')->get(); // Busque os pacientes
+        return view('nutricionist.mealplan.edit', compact('mealplan', 'patients'));
+    }
+
+    public function mealplanUpdate(Request $request, $id)
+    {
+        $mealplan = Mealplan::findOrFail($id);
+
+        $request->validate([
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'antropometria_date' => 'required|date',
+            'waist_circumference' => 'required|numeric',
+            'hip_circumference' => 'required|numeric',
+            'bmi' => 'required|numeric',
+            'body_fat' => 'required|numeric'
+        ]);
+
+        // Atualize os campos
+        $mealplan->weight = $request->input('weight');
+        $mealplan->height = $request->input('height');
+        $mealplan->antropometria_date = $request->input('antropometria_date');
+        $mealplan->waist_circumference = $request->input('waist_circumference');
+        $mealplan->hip_circumference = $request->input('hip_circumference');
+        $mealplan->skinfold_tricep = $request->input('skinfold_tricep');
+        $mealplan->skinfold_subscapular = $request->input('skinfold_subscapular');
+        $mealplan->bmi = $request->input('bmi');
+        $mealplan->body_fat = $request->input('body_fat');
+        $mealplan->save();
+
+        return redirect()->route('nutricionist.mealplan.dashboard')->with('success', 'Plano alimentar atualizado com sucesso!');
+    }
+
+    public function mealplanDestroy($id)
+    {
+        $mealplan = Mealplan::findOrFail($id);
+        $mealplan->delete();
+
+        toastr()->success('Plano alimentar excluído com sucesso!');
+        return redirect()->route('nutricionist.mealplan.dashboard');
+    }
+
+    public function seemealplan(Request $request) {
+        //filtro
+        //dd($request->search);
+        //$users = User::all(); // retorna os usuários
+        $search = $request->search;
+
+        $users = User::where(function ($query) use ($search){
+            if($search){
+                $query->where('email', $search);
+                $query->orWhere('name', 'LIKE', "%{$search}%");
+            }
+        })->get();
+        return view('nutricionist.mealplan.index', compact('users'));
     }
 
 }

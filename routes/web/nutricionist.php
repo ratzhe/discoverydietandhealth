@@ -97,4 +97,40 @@ Route::get('nutricionist/antropometria/see', [NutricionistController::class, 'se
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.antropometria.index');
 
+//////////////////
+// Rota nutricionista para o dashboard de plano alimentar
+Route::get('nutricionist/mealplan/dashboard', [NutricionistController::class, 'mealplanDashboard'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.dashboard');
+
+// Rota para mostrar o formulário de criação de plano alimentar
+Route::get('nutricionist/mealplan/create', [NutricionistController::class, 'showmealplanForm'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.create');
+
+// Rota para armazenar dados de plano alimentar
+Route::post('nutricionist/mealplan/store', [NutricionistController::class, 'mealplanCreate'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.store');
+
+// Rota para mostrar o formulário de edição de plano alimentar
+Route::get('nutricionist/mealplan/edit/{id}', [NutricionistController::class, 'showmealplanEditForm'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.edit');
+
+// Rota para atualizar os dados de plano alimentar
+Route::put('nutricionist/mealplan/update/{id}', [NutricionistController::class, 'mealplanUpdate'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.update');
+
+// Rota para excluir plano alimentar
+Route::delete('nutricionist/mealplan/{id}', [NutricionistController::class, 'mealplanDestroy'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.delete');
+
+// Ver plano alimentar
+Route::get('nutricionist/mealplan/see', [NutricionistController::class, 'seemealplan'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan.index');
+
 
