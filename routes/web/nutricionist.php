@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\NutricionistController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SeeUsersController;
+use App\Http\Controllers\MealPlanController;
 
 //Rota nutricionista
 Route::get('nutricionist/dashboard', [NutricionistController::class, 'dashboard'])
@@ -133,4 +134,17 @@ Route::get('nutricionist/mealplan/see', [NutricionistController::class, 'seemeal
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.mealplan.index');
 
+// teste
+Route::get('nutricionist/meal-plan/create', [MealPlanController::class, 'create'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.create');
+
+
+Route::get('nutricionist/meal-plan/store', [MealPlanController::class, 'store'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.store');
+
+Route::post('nutricionist/meal-plan/store', [MealPlanController::class, 'store'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.store');
 
