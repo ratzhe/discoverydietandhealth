@@ -22,7 +22,7 @@
             <ul class="dropdown-menu">
               <li><a class="nav-link" href="{{ route('nutricionist.anamnese.dashboard') }}">Anamnese</a></li>
               <li><a class="nav-link" href="{{ route('nutricionist.meal-plan.create') }}">Plano Alimentar</a></li>
-              <li><a class="nav-link" href="layout-top-navigation.html">Avaliação Laboratorial</a></li>
+              <li><a class="nav-link" href="{{ route('nutricionist.laboratory.create') }}">Avaliação Laboratorial</a></li>
               <li><a class="nav-link" href="{{ route('nutricionist.antropometria.dashboard') }}">Antropometria</a></li>
             </ul>
         </li>

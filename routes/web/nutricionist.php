@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AnamneseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\NutricionistController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -33,24 +33,24 @@ Route::get('nutricionist/users/see', [SeeUsersController::class, 'seePatients'])
 ->name('nutricionist.seepatients');
 
 //Rota nutricionistaa
-Route::get('nutricionist/anamnese/dashboard', [NutricionistController::class, 'anamneseDashboard'])
+Route::get('nutricionist/anamnese/dashboard', [AnamneseController::class, 'anamneseDashboard'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.anamnese.dashboard');
 
 //Rota nutricionista
-Route::get('nutricionist/anamnese/create', [NutricionistController::class, 'showAnamneseForm'])
+Route::get('nutricionist/anamnese/create', [AnamneseController::class, 'showAnamneseForm'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.anamnese.create');
 
-Route::post('nutricionist/anamnese/store', [NutricionistController::class, 'anamneseCreate'])
+Route::post('nutricionist/anamnese/store', [AnamneseController::class, 'anamneseCreate'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.anamnese.store');
 
-Route::put('nutricionist/anamnese/update/{id}', [NutricionistController::class, 'update'])
+Route::put('nutricionist/anamnese/update/{id}', [AnamneseController::class, 'update'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.anamnese.update');
 
-Route::get('nutricionist/anamnese/edit/{id}', [NutricionistController::class, 'showAnamneseEdit'])
+Route::get('nutricionist/anamnese/edit/{id}', [AnamneseController::class, 'showAnamneseEdit'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.anamnese.edit');
 
@@ -60,7 +60,7 @@ Route::get('nutricionist/relatorio', [SeeUsersController::class, 'seerelatorio']
 ->name('nutricionist.relatorio');
 
 // Rota para excluir usuário
-Route::delete('nutricionist/ananmese/{id}', [NutricionistController::class, 'destroy'])
+Route::delete('nutricionist/ananmese/{id}', [AnamneseController::class, 'destroy'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.anamnese.delete');
 
@@ -148,3 +148,16 @@ Route::post('nutricionist/meal-plan/store', [MealPlanController::class, 'store']
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.meal-plan.store');
 
+// Ver plano alimentar
+Route::get('nutricionist/meal-plan/dashboard', [MealPlanController::class, 'MealplanDashboard'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.dashboard');
+
+
+Route::delete('nutricionist/meal-plan/{id}', [MealPlanController::class, 'delete'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.delete');
+
+Route::put('nutricionist/meal-plan/update/{id}', [MealPlanController::class, 'update'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamnese.update');

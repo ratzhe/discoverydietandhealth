@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\mealPlan;
 
 class FoodItem extends Model
 {
@@ -11,10 +12,11 @@ class FoodItem extends Model
 
     protected $fillable = [
         'meal_plan_id',
+        'meal_type',
         'food_item',
     ];
 
-    // Definindo a relação com o MealPlan
+    // Relacionamento com o plano alimentar
     public function mealPlan()
     {
         return $this->belongsTo(MealPlan::class);
