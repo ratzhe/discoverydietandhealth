@@ -2,6 +2,7 @@
 
 return [
     'create_meal_plan' => 'Criar Plano Alimentar',
+    'mealplan_date' => 'Data',
     'select_patient' => 'Selecione o Paciente:',
     'breakfast' => 'Café da Manhã:',
     'morning_snack' => 'Lanche da Manhã:',
@@ -12,4 +13,3 @@ return [
     'add_more' => 'Adicionar mais',
     'save_meal_plan' => 'Salvar Plano Alimentar',
 ];
-    

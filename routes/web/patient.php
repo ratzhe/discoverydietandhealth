@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\PatientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\AnamneseController;
 
 //Rota patient
 Route::get('patient/dashboard', [PatientController::class, 'dashboard'])
@@ -44,8 +45,12 @@ Route::delete('patient/exam/{id}', [ExamController::class, 'destroy'])
 ->middleware(['auth', 'patient'])
 ->name('patient.exam.deleteExam');
 
-// adicionar campo salario mostar no editar
-//
-// se =  5000 baixo
-// 5001 e 10000 = medio
-// mais 10000 = alto
+
+Route::get('patient/anamneses', [AnamneseController::class, 'showPatientAnamneses'])
+->middleware(['auth', 'patient'])
+->name('patient.anamneses');
+
+Route::get('/patient/anamnese/{id}/download', [AnamneseController::class, 'downloadAnamnesePdf'])->name('patient.anamnese.download');
+
+
+

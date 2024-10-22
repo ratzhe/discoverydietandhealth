@@ -35,13 +35,18 @@
 
                 <!-- Seleção de Paciente -->
                 <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-9">
                       <label for="patient_id">{{ __('meal_plan.select_patient') }}</label>
                       <select name="patient_id" class="form-control" required>
                           @foreach($patients as $patient)
                               <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                           @endforeach
                       </select>
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="mealplan_date">{{ __('meal_plan.mealplan_date') }}</label>
+                        <input id="mealplan_date" type="date" class="form-control" name="mealplan_date" required>
                     </div>
                 </div>
 

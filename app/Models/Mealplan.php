@@ -12,6 +12,7 @@ class MealPlan extends Model
     protected $fillable = [
         'nutricionist_id',
         'patient_id',
+        'mealplan_date',
     ];
 
     // Relacionamento com os itens de comida

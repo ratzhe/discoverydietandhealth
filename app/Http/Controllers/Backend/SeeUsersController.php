@@ -88,4 +88,6 @@ class SeeUsersController extends Controller
     public function seerelatorio() {
         return view('nutricionist.relatorio');
     }
+
+    
 }

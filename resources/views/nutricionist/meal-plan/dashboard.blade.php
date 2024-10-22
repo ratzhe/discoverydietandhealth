@@ -23,7 +23,7 @@
                         <p class="card-text">Nutricionista: {{ $mealPlan->nutricionist->name }}</p>
 
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="{{ route('nutricionist.meal-plan.update', $mealPlan->id) }}" class="btn btn-primary mx-1 btn-custom">Editar</a>
+                            <a href="{{ route('nutricionist.meal-plan.create', $mealPlan->id) }}" class="btn btn-primary mx-1 btn-custom">Editar</a>
                             <a href="{{ route('nutricionist.meal-plan.delete', $mealPlan->id) }}" class="btn btn-danger mx-1 btn-custom" data-method="DELETE" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $mealPlan->id }}').submit();">Excluir</a>
                             <form id="delete-form-{{ $mealPlan->id }}" action="{{ route('nutricionist.meal-plan.delete', $mealPlan->id) }}" method="POST" style="display:none;">
                                 @csrf

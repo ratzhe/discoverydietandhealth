@@ -20,10 +20,11 @@ class MealPlanController extends Controller
     {
         $patients = User::where('role', 'patient')->get(); // Obtendo pacientes
         return view('nutricionist.meal-plan.create', compact('patients'));
-    }
+    }   
 
     public function store(Request $request)
-{
+    {
+
     // Verifica se o usuário autenticado é um nutricionista
     if (Auth::user()->role !== 'nutricionist') {
         return redirect()->back()->withErrors('Você não tem permissão para criar planos alimentares.');
@@ -31,6 +32,7 @@ class MealPlanController extends Controller
 
     $validated = $request->validate([
         'patient_id' => 'required',
+        'mealplan_date' => 'required|date',
         'breakfast' => 'required|array',
         'morning_snack' => 'required|array',
         'lunch' => 'required|array',
@@ -41,8 +43,9 @@ class MealPlanController extends Controller
 
     // Cria o plano alimentar
     $mealPlan = MealPlan::create([
-        'nutricionist_id' => Auth::id(), // Nutricionista autenticado
+        'nutricionist_id' => Auth::id(),
         'patient_id' => $validated['patient_id'],
+        'mealplan_date' => $validated['mealplan_date'],
     ]);
 
     // Salva os itens de cada refeição
@@ -80,6 +83,7 @@ class MealPlanController extends Controller
     // Validação dos dados recebidos
     $validated = $request->validate([
         'patient_id' => 'required',
+        'mealplan_date' => 'required|date',
         'breakfast' => 'required|array',
         'morning_snack' => 'required|array',
         'lunch' => 'required|array',
@@ -91,6 +95,7 @@ class MealPlanController extends Controller
     // Encontrar o plano alimentar existente
     $mealPlan = MealPlan::findOrFail($id);
     $mealPlan->patient_id = $validated['patient_id'];
+    $mealPlan->mealplan_date = $validated['mealplan_date'];
     $mealPlan->save(); // Salva as mudanças no plano alimentar
 
     // Atualiza os itens de cada refeição
@@ -120,7 +125,6 @@ private function updateFoodItems($mealPlanId, $mealType, $foodItems)
         }
     }
 }
-
 
     public function delete($id)
     {

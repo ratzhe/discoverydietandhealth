@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Anamnese;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+//use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AnamneseController extends Controller
@@ -137,4 +138,28 @@ class AnamneseController extends Controller
         $patients = User::where('role', 'patient')->get(); // Busque os pacientes
         return view('nutricionist.anamnese.edit', compact('anamnese', 'patients'));
     }
+
+    //Visualização do paciente
+    public function showPatientAnamneses()
+    {
+        $pacienteId = Auth::id(); // ID do usuário logado
+        $anamneses = Anamnese::where('patient_id', $pacienteId)->get();
+
+        return view('patient.anamneses', compact('anamneses'));
+    }
+
+
+    public function downloadAnamnesePdf($id)
+    {
+        // Encontre a anamnese pelo ID
+        $anamnese = Anamnese::findOrFail($id);
+
+        // Gere o PDF
+        $pdf = PDF::loadView('patient.pdf', compact('anamnese'));
+
+        // Retorne o PDF como download
+        return $pdf->download('anamnese_' . $anamnese->id . '.pdf');
+    }
+
+
 }

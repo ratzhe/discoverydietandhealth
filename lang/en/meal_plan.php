@@ -2,6 +2,7 @@
 
 return [
     'create_meal_plan' => 'Create Meal Plan',
+    'mealplan_date' => 'Date',
     'select_patient' => 'Select Patient:',
     'breakfast' => 'Breakfast:',
     'morning_snack' => 'Morning Snack:',
