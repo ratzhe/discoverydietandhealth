@@ -145,21 +145,37 @@ class AnamneseController extends Controller
         $pacienteId = Auth::id(); // ID do usuário logado
         $anamneses = Anamnese::where('patient_id', $pacienteId)->get();
 
-        return view('patient.anamneses', compact('anamneses'));
+        return view('patient.anamnese.list', compact('anamneses'));
     }
 
+    public function showAnamnese($id) {
+        // Busca a anamnese específica pelo ID
+        $anamnese = Anamnese::with(['patient', 'nutricionist'])->findOrFail($id);
+
+        return view('patient.anamnese.view', compact('anamnese'));
+    }
 
     public function downloadAnamnesePdf($id)
     {
-        // Encontre a anamnese pelo ID
+        // Encontra a anamnese pelo ID
         $anamnese = Anamnese::findOrFail($id);
 
-        // Gere o PDF
-        $pdf = PDF::loadView('patient.pdf', compact('anamnese'));
+        // Gera o PDF
+        $pdf = PDF::loadView('patient.anamnese.pdf', compact('anamnese'));
 
-        // Retorne o PDF como download
+        // Retorna o PDF como download
         return $pdf->download('anamnese_' . $anamnese->id . '.pdf');
     }
+
+    public function anamneseDashboardPatient(){
+        // Busca as anamneses do paciente logado, com os pacientes e nutricionistas relacionados
+        $anamneseList = Anamnese::with(['patient', 'nutricionist'])
+                        ->where('patient_id', auth()->id()) // Filtra pelo paciente logado
+                        ->get();
+
+        return view('patient.anamnese.dashboard', compact('anamneseList'));
+    }
+
 
 
 }

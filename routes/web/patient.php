@@ -46,11 +46,23 @@ Route::delete('patient/exam/{id}', [ExamController::class, 'destroy'])
 ->name('patient.exam.deleteExam');
 
 
-Route::get('patient/anamneses', [AnamneseController::class, 'showPatientAnamneses'])
+Route::get('patient/anamnese/list', [AnamneseController::class, 'showPatientAnamneses'])
 ->middleware(['auth', 'patient'])
-->name('patient.anamneses');
+->name('patient.anamnese.list');
 
-Route::get('/patient/anamnese/{id}/download', [AnamneseController::class, 'downloadAnamnesePdf'])->name('patient.anamnese.download');
+Route::get('patient/anamnese/dashboard', [AnamneseController::class, 'anamneseDashboardPatient'])
+->middleware(['auth', 'patient'])
+->name('patient.anamnese.dashboard');
+
+Route::get('/patient/anamnese/{id}/download', [AnamneseController::class, 'downloadAnamnesePdf'])
+->middleware(['auth', 'patient'])
+->name('patient.anamnese.download');
+
+Route::get('/patient/anamnese/{id}', [AnamneseController::class, 'showAnamnese'])
+->middleware(['auth', 'patient'])
+->name('patient.anamnese.view');
+
+
 
 
 
