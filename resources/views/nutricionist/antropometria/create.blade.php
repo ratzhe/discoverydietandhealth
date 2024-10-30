@@ -97,7 +97,7 @@
                     <label for="abdomen_circumference">{{ __('antropometria.abdomen_circumference') }}</label>
                     <input id="abdomen_circumference" type="number" class="form-control" name="abdomen_circumference">
                   </div>
-                </div>  
+                </div>
 
                 <div class="row">
                   <div class="form-group col-6">

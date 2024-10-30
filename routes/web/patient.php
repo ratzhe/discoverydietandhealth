@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\AnamneseController;
+use App\Http\Controllers\AntropometriaController;
+use App\Models\Antropometria;
 
 //Rota patient
 Route::get('patient/dashboard', [PatientController::class, 'dashboard'])
@@ -45,7 +47,7 @@ Route::delete('patient/exam/{id}', [ExamController::class, 'destroy'])
 ->middleware(['auth', 'patient'])
 ->name('patient.exam.deleteExam');
 
-
+// Anamnese
 Route::get('patient/anamnese/list', [AnamneseController::class, 'showPatientAnamneses'])
 ->middleware(['auth', 'patient'])
 ->name('patient.anamnese.list');
@@ -61,6 +63,27 @@ Route::get('/patient/anamnese/{id}/download', [AnamneseController::class, 'downl
 Route::get('/patient/anamnese/{id}', [AnamneseController::class, 'showAnamnese'])
 ->middleware(['auth', 'patient'])
 ->name('patient.anamnese.view');
+
+
+// Antropometria
+Route::get('patient/antropometria/list', [AntropometriaController::class, 'showPatientAntropometria'])
+->middleware(['auth', 'patient'])
+->name('patient.antropometria.list');
+
+Route::get('patient/antropometria/dashboard', [AntropometriaController::class, 'antropometriaDashboardPatient'])
+->middleware(['auth', 'patient'])
+->name('patient.antropometria.dashboard');
+
+Route::get('/patient/antropometria/{id}/download', [AntropometriaController::class, 'downloadAntropometriaPdf'])
+->middleware(['auth', 'patient'])
+->name('patient.antropometria.download');
+
+Route::get('/patient/antropometria/{id}', [AntropometriaController::class, 'showAntropometria'])
+->middleware(['auth', 'patient'])
+->name('patient.antropometria.view');
+
+
+
 
 
 
