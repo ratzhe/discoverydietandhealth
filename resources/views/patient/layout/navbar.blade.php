@@ -10,7 +10,9 @@
 
         <!-- Botão de Modo Escuro -->
         <li class="nav-item">
-            <button id="themeToggle" class="btn btn-outline-light">Modo Escuro</button>
+            <button id="themeToggle" class="btn btn-outline-light">
+                <i id="themeIcon" class="fas fa-moon"></i> <span id="themeText"></span>
+            </button>
         </li>
 
 
