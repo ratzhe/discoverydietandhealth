@@ -8,6 +8,12 @@
     </form>
     <ul class="navbar-nav navbar-right">
 
+        <!-- Botão de Modo Escuro -->
+        <li class="nav-item">
+            <button id="themeToggle" class="btn btn-outline-light">Modo Escuro</button>
+        </li>
+
+
       <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
         @if(Auth::user()->image != null)
             <img alt="{{ Auth::user()->name }}" src="{{ asset(Auth::user()->image) }}" class="rounded-circle mr-1">

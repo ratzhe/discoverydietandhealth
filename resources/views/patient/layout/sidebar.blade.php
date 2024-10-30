@@ -8,11 +8,11 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Painel de Controle</li>
-        <li class="dropdown active">
+        <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i><span>Painel</span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="{{ route('patient.dashboard') }}">Home</a></li>
-            <li class=><a class="nav-link" href="{{ route('patient.profile') }}">Meu Perfil</a></li>
+            <li><a class="nav-link" href="{{ route('patient.dashboard') }}">Home</a></li>
+            <li><a class="nav-link" href="{{ route('patient.profile') }}">Meu Perfil</a></li>
           </ul>
         </li>
 

@@ -118,5 +118,25 @@
         $('#cep').mask('00000-000');
     });
   </script>
+
+    <script>
+        // Verifica a preferência de tema salva
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeToggle').textContent = 'Modo Claro';
+            }
+        });
+
+        // Alterna o modo escuro/claro
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode);
+            this.textContent = isDarkMode ? 'Modo Claro' : 'Modo Escuro';
+        });
+    </script>
+
 </body>
 </html>

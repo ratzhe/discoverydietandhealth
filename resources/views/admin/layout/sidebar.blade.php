@@ -8,13 +8,13 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Painel de Controle</li>
-        <li class="dropdown active">
+        <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Painel</span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class=><a class="nav-link" href="{{ route('admin.profile') }}">Meu Perfil</a></li>
-            <li class=""><a class="nav-link" href="{{ route('admin.showRegisterForm') }}">Novos Usuários</a></li>
-            <li class=""><a class="nav-link" href="{{ route('admin.seeusers') }}">Ver Usuários</a></li>
+            <li><a class="nav-link" href="{{ route('admin.dashboard') }}">Home</a></li>
+            <li><a class="nav-link" href="{{ route('admin.profile') }}">Meu Perfil</a></li>
+            <li><a class="nav-link" href="{{ route('admin.showRegisterForm') }}">Novos Usuários</a></li>
+            <li><a class="nav-link" href="{{ route('admin.seeusers') }}">Ver Usuários</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -32,4 +32,3 @@
       </aside>
   </div>
 
-  
