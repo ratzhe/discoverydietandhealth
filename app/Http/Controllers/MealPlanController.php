@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MealPlan;
 use App\Models\FoodItem;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MealPlanController extends Controller
 {
@@ -20,7 +21,7 @@ class MealPlanController extends Controller
     {
         $patients = User::where('role', 'patient')->get(); // Obtendo pacientes
         return view('nutricionist.meal-plan.create', compact('patients'));
-    }   
+    }
 
     public function store(Request $request)
     {
@@ -133,5 +134,33 @@ private function updateFoodItems($mealPlanId, $mealType, $foodItems)
 
         toastr()->success('Plano alimentar excluído com sucesso!');
         return redirect()->route('nutricionist.meal-plan.dashboard');
+    }
+
+    public function mealPlanDashboardPatient(){
+        // Busca as anamneses do paciente logado, com os pacientes e nutricionistas relacionados
+        $mealplanList = MealPlan::with(['patient', 'nutricionist'])
+                        ->where('patient_id', auth()->id()) // Filtra pelo paciente logado
+                        ->get();
+
+        return view('patient.mealplan.dashboard', compact('mealplanList'));
+    }
+
+    public function showMealplan($id) {
+        // Busca a anamnese específica pelo ID
+        $mealplan = MealPlan::with(['patient', 'nutricionist'])->findOrFail($id);
+
+        return view('patient.mealplan.view', compact('mealplan'));
+    }
+
+    public function downloadMealplanPdf($id)
+    {
+        // Encontra a anamnese pelo ID
+        $mealplan = MealPlan::findOrFail($id);
+
+        // Gera o PDF
+        $pdf = PDF::loadView('patient.mealplan.pdf', compact('mealplan'));
+
+        // Retorna o PDF como download
+        return $pdf->download('mealplan_' . $mealplan->id . '.pdf');
     }
 }

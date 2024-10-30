@@ -6,7 +6,6 @@ use App\Models\Antropometria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AntropometriaController extends Controller

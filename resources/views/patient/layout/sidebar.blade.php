@@ -20,7 +20,7 @@
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Nutricional</span></a>
             <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('patient.anamnese.dashboard') }}">Anamnese</a></li>
-              <li><a class="nav-link" href="layout-transparent.html">Plano Alimentar</a></li>
+              <li><a class="nav-link" href="{{ route('patient.mealplan.dashboard') }}">Plano Alimentar</a></li>
               <li><a class="nav-link" href="{{ route('patient.antropometria.dashboard') }}">Antropometria</a></li>
             </ul>
           </li>
