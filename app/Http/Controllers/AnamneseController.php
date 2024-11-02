@@ -177,5 +177,4 @@ class AnamneseController extends Controller
     }
 
 
-
 }

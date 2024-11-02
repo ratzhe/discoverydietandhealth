@@ -120,23 +120,35 @@
     });
   </script>
 
-    <script>
-        // Verifica a preferência de tema salva
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const isDarkMode = localStorage.getItem('dark-mode') === 'true';
-            if (isDarkMode) {
-                document.body.classList.add('dark-mode');
-                document.getElementById('themeToggle').textContent = 'Modo Claro';
-            }
-        });
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
 
-        // Alterna o modo escuro/claro
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('dark-mode', isDarkMode);
-            this.textContent = isDarkMode ? 'Modo Claro' : 'Modo Escuro';
+    // Aplica o tema inicial
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        //themeText.textContent = 'Modo Claro';
+    }
+
+    // Alterna o tema ao clicar
+    document.getElementById('themeToggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('dark-mode', isDarkMode);
+
+        if (isDarkMode) {
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            //themeText.textContent = 'Modo Claro';
+        } else {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            //themeText.textContent = 'Modo Escuro';
+        }
         });
+    });
+
     </script>
 
 </body>

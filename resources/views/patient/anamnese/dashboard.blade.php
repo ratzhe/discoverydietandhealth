@@ -1,4 +1,4 @@
-@extends('patient.layout.master')
+@extends('nutricionist.layout.master')
 
 @section('content')
 <div class="container mt-5">
