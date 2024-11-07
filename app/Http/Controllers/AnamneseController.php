@@ -12,16 +12,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AnamneseController extends Controller
 {
-    public function anamneseDashboard(){
-        // Busque as anamneses com os pacientes e nutricionistas relacionados
+    public function anamneseDashboard()
+{
+    // Verifique o papel do usuário logado
+    if (Auth::user()->role === 'admin') {
+        // Administrador vê todas as anamneses
         $anamneseList = Anamnese::with(['patient', 'nutricionist'])->get();
+        return view('admin/anamnese/dashboard', compact('anamneseList'));
+    } else {
+        // Nutricionista vê apenas as suas próprias anamneses
+        $anamneseList = Anamnese::with(['patient', 'nutricionist'])
+                                ->where('nutricionist_id', Auth::id())
+                                ->get();
         return view('nutricionist/anamnese/dashboard', compact('anamneseList'));
     }
-
-
-    //public function anamneseCreate(){
-        //$patients = User::where('role', 'patient')->get();
-      //  return view('nutricionist.anamnese.create', compact('patients'));
+}
 
         public function anamneseCreate(Request $request)
     {
@@ -30,7 +35,6 @@ class AnamneseController extends Controller
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
             'anamnese_date' => 'required|date'
-            // Adicionar validações conforme necessário
         ]);
 
         $anamnese = new Anamnese();
@@ -57,13 +61,67 @@ class AnamneseController extends Controller
 
         return redirect()->route('nutricionist.anamnese.dashboard')->with('success', 'Anamnese cadastrada com sucesso!');
     }
-    //}
+
+    public function anamneseCreateAdmin(Request $request)
+    {
+        $request->validate([
+            'patient_id' => 'required|exists:users,id',
+            'nutricionist_id' => 'required|exists:users,id',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'anamnese_date' => 'required|date'
+        ]);
+
+        $anamnese = new Anamnese();
+        $anamnese->patient_id = $request->input('patient_id');
+        $anamnese->nutricionist_id = $request->input('nutricionist_id'); // Nutricionista selecionado pelo admin
+        $anamnese->anamnese_date = $request->input('anamnese_date');
+        $anamnese->weight = $request->input('weight');
+        $anamnese->height = $request->input('height');
+        $anamnese->diseases = $request->input('diseases');
+        $anamnese->allergies = $request->input('allergies');
+        $anamnese->medications = $request->input('medications');
+        $anamnese->family_history = $request->input('family_history');
+        $anamnese->meals_per_day = $request->input('meals_per_day');
+        $anamnese->water_intake = $request->input('water_intake');
+        $anamnese->alcohol = $request->input('alcohol');
+        $anamnese->caffeine = $request->input('caffeine');
+        $anamnese->exercise = $request->input('exercise');
+        $anamnese->exercise_frequency = $request->input('exercise_frequency');
+        $anamnese->snacks = $request->input('snacks');
+        $anamnese->diet_history = $request->input('diet_history');
+        $anamnese->short_term_goal = $request->input('short_term_goal');
+        $anamnese->long_term_goal = $request->input('long_term_goal');
+        $anamnese->save();
+
+        return redirect()->route('admin.anamnese.dashboard')->with('success', 'Anamnese cadastrada com sucesso!');
+    }
+
 
     public function showAnamneseForm()
     {
-        $patients = User::where('role', 'patient')->get(); // Busque os pacientes
+        $patients = User::where('role', 'patient')->get();
         return view('nutricionist.anamnese.create', compact('patients'));
     }
+
+    public function showAnamneseFormAdmin()
+    {
+        $patients = User::where('role', 'patient')->get(); // Selecionando os pacientes
+        $nutricionists = User::where('role', 'nutricionist')->get(); // Selecionando os nutricionistas
+        return view('admin.anamnese.create', compact('patients', 'nutricionists'));
+    }
+
+    public function showAnamneseEditFormAdmin($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Acesso não autorizado.');
+        }
+
+        $anamnese = Anamnese::findOrFail($id);
+        $patients = User::where('role', 'patient')->get(); // Busque os pacientes
+        return view('admin/anamnese/edit', compact('anamnese', 'patients'));
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -96,6 +154,38 @@ class AnamneseController extends Controller
         $anamnese->save();
 
         return redirect()->route('nutricionist.anamnese.dashboard')->with('success', 'Anamnese atualizada com sucesso!');
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $anamnese = Anamnese::findOrFail($id);
+
+        $request->validate([
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+        ]);
+
+        // Atualize os campos
+        $anamnese->anamnese_date = $request->input(('anamnese_date'));
+        $anamnese->weight = $request->input('weight');
+        $anamnese->height = $request->input('height');
+        $anamnese->diseases = $request->input('diseases');
+        $anamnese->allergies = $request->input('allergies');
+        $anamnese->medications = $request->input('medications');
+        $anamnese->family_history = $request->input('family_history');
+        $anamnese->meals_per_day = $request->input('meals_per_day');
+        $anamnese->water_intake = $request->input('water_intake');
+        $anamnese->alcohol = $request->input('alcohol');
+        $anamnese->caffeine = $request->input('caffeine');
+        $anamnese->exercise = $request->input('exercise');
+        $anamnese->exercise_frequency = $request->input('exercise_frequency');
+        $anamnese->snacks = $request->input('snacks');
+        $anamnese->diet_history = $request->input('diet_history');
+        $anamnese->short_term_goal = $request->input('short_term_goal');
+        $anamnese->long_term_goal = $request->input('long_term_goal');
+        $anamnese->save();
+
+        return redirect()->route('admin.anamnese.dashboard')->with('success', 'Anamnese atualizada com sucesso!');
     }
 
     public function showAnamneseEditForm($id)
@@ -131,6 +221,14 @@ class AnamneseController extends Controller
         return redirect()->route('nutricionist.anamnese.dashboard');
     }
 
+    public function destroyAdmin($id){
+        $anamnese = Anamnese::findOrFail($id);
+        $anamnese->delete();
+
+        toastr()->success('Usuário excluído com sucesso!');
+        return redirect()->route('admin.anamnese.dashboard');
+    }
+
 
     public function showAnamneseEdit($id)
     {
@@ -154,6 +252,17 @@ class AnamneseController extends Controller
 
         return view('patient.anamnese.view', compact('anamnese'));
     }
+
+    public function showAnamneseAdmin($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Acesso não autorizado.');
+        }
+
+        $anamnese = Anamnese::with(['patient', 'nutricionist'])->findOrFail($id);
+        return view('admin/anamnese/show', compact('anamnese'));
+    }
+
 
     public function downloadAnamnesePdf($id)
     {

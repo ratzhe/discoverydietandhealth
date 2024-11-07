@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RegisterController;
 use App\Http\Controllers\Backend\SeeUsersController;
 use App\Http\Middleware\Admin;
+use App\Http\Controllers\AnamneseController;
+
 
 Route::post('admin/logout', [AdminController::class, 'logout'])
 ->name('logout');
@@ -68,6 +70,44 @@ Route::put('admin/users/{id}', [SeeUsersController::class, 'update'])
 Route::get('admin/nutricionist/{id}/dashboard', [AdminController::class, 'nutricionistDashboard'])
     ->middleware(['auth', 'admin'])
     ->name('admin.nutricionistDashboard');
+
+// Visualizar lista de anamneses no dashboard de administrador
+Route::get('admin/anamnese', [AnamneseController::class, 'anamneseDashboard'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.dashboard');
+
+// Visualizar uma anamnese específica
+Route::get('admin/anamnese/{id}', [AnamneseController::class, 'showAnamneseAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.show');
+
+// Formulário para editar anamnese
+Route::get('admin/anamnese/{id}/edit', [AnamneseController::class, 'showAnamneseEditFormAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.edit');
+
+// Atualizar anamnese
+Route::put('admin/anamnese/{id}', [AnamneseController::class, 'updateAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.update');
+
+// Excluir anamnese
+Route::delete('admin/anamnese/{id}', [AnamneseController::class, 'destroyAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.delete');
+
+// Criar anamnese
+Route::post('admin/anamnese/store', [AnamneseController::class, 'anamneseCreateAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.store');
+
+// Rota para exibir o formulário de cadastro de anamnese
+Route::get('admin/anamnese/create', [AnamneseController::class, 'showAnamneseFormAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.anamnese.create');
+
+
+
 
 
 
