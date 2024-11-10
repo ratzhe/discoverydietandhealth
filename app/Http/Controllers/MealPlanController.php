@@ -110,22 +110,22 @@ class MealPlanController extends Controller
     return redirect()->route('nutricionist.meal-plan.dashboard')->with('success', 'Plano alimentar atualizado com sucesso!');
 }
 
-private function updateFoodItems($mealPlanId, $mealType, $foodItems)
-{
-    // Limpa os itens antigos da refeição
-    FoodItem::where('meal_plan_id', $mealPlanId)->where('meal_type', $mealType)->delete();
+    private function updateFoodItems($mealPlanId, $mealType, $foodItems)
+    {
+        // Limpa os itens antigos da refeição
+        FoodItem::where('meal_plan_id', $mealPlanId)->where('meal_type', $mealType)->delete();
 
-    // Salva os novos itens
-    foreach ($foodItems as $foodItem) {
-        if (!empty($foodItem)) {
-            FoodItem::create([
-                'meal_plan_id' => $mealPlanId,
-                'meal_type' => $mealType,
-                'food_item' => $foodItem,
-            ]);
+        // Salva os novos itens
+        foreach ($foodItems as $foodItem) {
+            if (!empty($foodItem)) {
+                FoodItem::create([
+                    'meal_plan_id' => $mealPlanId,
+                    'meal_type' => $mealType,
+                    'food_item' => $foodItem,
+                ]);
+            }
         }
     }
-}
 
     public function delete($id)
     {
@@ -163,4 +163,78 @@ private function updateFoodItems($mealPlanId, $mealType, $foodItems)
         // Retorna o PDF como download
         return $pdf->download('mealplan_' . $mealplan->id . '.pdf');
     }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        // Verifica se o usuário autenticado é um nutricionista
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->withErrors('Você não tem permissão para atualizar planos alimentares.');
+        }
+
+        // Validação dos dados recebidos
+        $validated = $request->validate([
+            'patient_id' => 'required',
+            'mealplan_date' => 'required|date',
+            'breakfast' => 'required|array',
+            'morning_snack' => 'required|array',
+            'lunch' => 'required|array',
+            'afternoon_snack' => 'required|array',
+            'dinner' => 'required|array',
+            'supper' => 'required|array',
+        ]);
+
+        // Encontrar o plano alimentar existente
+        $mealPlan = MealPlan::findOrFail($id);
+        $mealPlan->patient_id = $validated['patient_id'];
+        $mealPlan->mealplan_date = $validated['mealplan_date'];
+        $mealPlan->save();
+
+        // Atualiza os itens de cada refeição
+        $this->updateFoodItems($mealPlan->id, 'breakfast', $validated['breakfast']);
+        $this->updateFoodItems($mealPlan->id, 'morning_snack', $validated['morning_snack']);
+        $this->updateFoodItems($mealPlan->id, 'lunch', $validated['lunch']);
+        $this->updateFoodItems($mealPlan->id, 'afternoon_snack', $validated['afternoon_snack']);
+        $this->updateFoodItems($mealPlan->id, 'dinner', $validated['dinner']);
+        $this->updateFoodItems($mealPlan->id, 'supper', $validated['supper']);
+
+        return redirect()->route('admin.mealplan.dashboard')->with('success', 'Plano alimentar atualizado com sucesso!');
+    }
+
+    public function showMealplanEditFormAdmin($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Acesso não autorizado.');
+        }
+
+        $mealplan = MealPlan::findOrFail($id);
+        $patients = User::where('role', 'patient')->get();
+        return view('admin/mealplan/edit', compact('mealplan', 'patients'));
+    }
+
+    public function deleteAdmin($id)
+    {
+        $mealplan = MealPlan::findOrFail($id);
+        $mealplan->delete();
+
+        toastr()->success('Plano alimentar excluído com sucesso!');
+        return redirect()->route('admin.mealplan.dashboard');
+    }
+
+    public function MealplanDashboardAdmin()
+    {
+        $mealplans = MealPlan::with(['patient', 'nutricionist'])->get();
+        return view('admin.mealplan.dashboard', compact('mealplans'));
+    }
+
+    public function showMealplanAdmin($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Acesso não autorizado.');
+        }
+
+        $mealplan = MealPlan::with(['patient', 'nutricionist'])->findOrFail($id);
+        return view('admin/mealplan/show', compact('mealplan'));
+    }
+
+
 }

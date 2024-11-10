@@ -217,7 +217,7 @@ class AnamneseController extends Controller
         $anamnese = Anamnese::findOrFail($id);
         $anamnese->delete();
 
-        toastr()->success('Usuário excluído com sucesso!');
+        toastr()->success('Anamnese excluída com sucesso!');
         return redirect()->route('nutricionist.anamnese.dashboard');
     }
 
@@ -225,7 +225,7 @@ class AnamneseController extends Controller
         $anamnese = Anamnese::findOrFail($id);
         $anamnese->delete();
 
-        toastr()->success('Usuário excluído com sucesso!');
+        toastr()->success('Anamnese excluída com sucesso!');
         return redirect()->route('admin.anamnese.dashboard');
     }
 
@@ -277,9 +277,8 @@ class AnamneseController extends Controller
     }
 
     public function anamneseDashboardPatient(){
-        // Busca as anamneses do paciente logado, com os pacientes e nutricionistas relacionados
         $anamneseList = Anamnese::with(['patient', 'nutricionist'])
-                        ->where('patient_id', auth()->id()) // Filtra pelo paciente logado
+                        ->where('patient_id', auth()->id())
                         ->get();
 
         return view('patient.anamnese.dashboard', compact('anamneseList'));

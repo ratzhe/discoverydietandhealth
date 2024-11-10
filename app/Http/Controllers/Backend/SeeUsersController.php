@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -50,32 +51,35 @@ class SeeUsersController extends Controller
             'email' => ['sometimes', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $id],
             'username' => ['sometimes', 'string', 'max:255'],
             'phone' => ['sometimes', 'string'],
-            //'salario' => ['sometimes', 'string'],
             'role' => ['sometimes', 'string', 'in:admin,nutricionist,trainer,patient'],
-            'password' => ['sometimes', 'confirmed', Rules\Password::defaults()],
+            'cpf' => ['required', 'string', 'size:14'], // Ex: 000.000.000-00
+            'rg' => ['required', 'string', 'size:12'], // Ex: 00.000.000-0
+            'datebirth' => ['required', 'date'],
+            // Validações para os campos de endereço
+            'cep' => ['required', 'string', 'size:9'], // Ex: 99999-999
+            'street' => ['required', 'string', 'max:255'],
+            'neighborhood' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'size:2'], // Ex: SP
+            'number' => ['required', 'string', 'max:10'],
+            'complement' => ['nullable', 'string', 'max:255'],
         ]);
 
+        // Encontra o usuário pelo ID
         $user = User::findOrFail($id);
 
-        // Atualiza apenas os campos que foram preenchidos
-        $user->name = $request->input('name', $user->name);
-        $user->email = $request->input('email', $user->email);
-        $user->username = $request->input('username', $user->username);
-        $user->phone = $request->input('phone', $user->phone);
-        $user->role = $request->input('role', $user->role);
-        //$user->salario = $request->input('salario', $user->salario);
+        // Atualiza os campos do usuário
+        $user->update($request->only(['name', 'email', 'username', 'phone', 'role', 'cpf', 'rg', 'datebirth']));
 
-        // Atualiza a senha somente se for fornecida
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->input('password'));
-        }
+        // Atualiza ou cria o endereço associado
+        $user->address()->updateOrCreate(
+            ['user_id' => $user->id],
+            $request->only(['cep', 'street', 'neighborhood', 'city', 'state', 'number', 'complement'])
+        );
 
-        $user->save();
-
-        // Redireciona com uma mensagem de sucesso
-        toastr()->success('Usuário atualizado com sucesso!');
-        return redirect()->route('admin.seeusers');
+        return redirect()->route('admin.seeusers')->with('success', 'Usuário atualizados com sucesso!');
     }
+
 
     public function destroy($id){
         $user = User::findOrFail($id);
@@ -89,5 +93,5 @@ class SeeUsersController extends Controller
         return view('nutricionist.relatorio');
     }
 
-    
+
 }

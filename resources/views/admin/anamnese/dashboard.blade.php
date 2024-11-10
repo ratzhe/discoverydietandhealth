@@ -4,10 +4,7 @@
 <div class="container mt-5">
     <br>
     <div class="d-flex justify-content-between align-items-center mb-5">
-        <h3>Listagem de Anamneses </h3>
-
-        <!-- Botão para criar nova antropometria -->
-        <a href="{{ route('admin.anamnese.create') }}" class="btn btn-success"> Nova Anamnese</a>
+        <h3>Anamneses </h3>
     </div>
     <div class="row">
         @foreach($anamneseList as $anamnese)

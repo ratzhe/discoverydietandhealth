@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnamneseController;
+use App\Http\Controllers\AntropometriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\NutricionistController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -85,7 +86,7 @@ Route::get('nutricionist/antropometria/edit/{id}', [NutricionistController::clas
     ->name('nutricionist.antropometria.edit');
 
 // Rota para atualizar os dados de antropometria
-Route::put('nutricionist/antropometria/update/{id}', [NutricionistController::class, 'antropometriaUpdate'])
+Route::put('nutricionist/antropometria/update/{id}', [AntropometriaController::class, 'antropometriaUpdate'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.antropometria.update');
 
@@ -153,11 +154,10 @@ Route::get('nutricionist/meal-plan/dashboard', [MealPlanController::class, 'Meal
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.meal-plan.dashboard');
 
-
 Route::delete('nutricionist/meal-plan/{id}', [MealPlanController::class, 'delete'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.meal-plan.delete');
 
 Route::put('nutricionist/meal-plan/update/{id}', [MealPlanController::class, 'update'])
     ->middleware(['auth', 'nutricionist'])
-    ->name('nutricionist.anamnese.update');
+    ->name('nutricionist.meal-plan.update');

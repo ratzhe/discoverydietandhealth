@@ -9,7 +9,8 @@ use App\Http\Controllers\Backend\RegisterController;
 use App\Http\Controllers\Backend\SeeUsersController;
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\AnamneseController;
-
+use App\Http\Controllers\AntropometriaController;
+use App\Http\Controllers\MealPlanController;
 
 Route::post('admin/logout', [AdminController::class, 'logout'])
 ->name('logout');
@@ -96,18 +97,64 @@ Route::delete('admin/anamnese/{id}', [AnamneseController::class, 'destroyAdmin']
     ->middleware(['auth', 'admin'])
     ->name('admin.anamnese.delete');
 
-// Criar anamnese
-Route::post('admin/anamnese/store', [AnamneseController::class, 'anamneseCreateAdmin'])
+
+// Visualizar lista de antropometria no dashboard de administrador
+Route::get('admin/antropometria', [AntropometriaController::class, 'antropometriaDashboard'])
     ->middleware(['auth', 'admin'])
-    ->name('admin.anamnese.store');
+    ->name('admin.antropometria.dashboard');
 
-// Rota para exibir o formulário de cadastro de anamnese
-Route::get('admin/anamnese/create', [AnamneseController::class, 'showAnamneseFormAdmin'])
+// Visualizar uma antropometria específica
+Route::get('admin/antropometria/{id}', [AntropometriaController::class, 'showAntropometriaAdmin'])
     ->middleware(['auth', 'admin'])
-    ->name('admin.anamnese.create');
+    ->name('admin.antropometria.show');
+
+// Formulário para editar antropometria
+Route::get('admin/antropometria/{id}/edit', [AntropometriaController::class, 'showAntropometriaEditFormAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.antropometria.edit');
+
+// Atualizar antropometria
+Route::put('admin/antropometria/{id}', [AntropometriaController::class, 'updateAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.antropometria.update');
+
+// Excluir antropometria
+Route::delete('admin/antropometria/{id}', [AntropometriaController::class, 'destroyAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.antropometria.delete');
+
+//Plano Alimentar
+
+// Ver plano alimentar
+Route::get('admin/mealplan/dashboard', [MealPlanController::class, 'MealplanDashboardAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.dashboard');
+
+// Apagar plano alimentar
+Route::delete('admin/mealplan/{id}', [MealPlanController::class, 'deleteAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.delete');
+
+// Atualizar plano alimentar
+Route::put('admin/mealplan/update/{id}', [MealPlanController::class, 'updateAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.update');
 
 
+// Formulário para editar mealplan
+Route::get('admin/mealplan/{id}/edit', [MealPlanController::class, 'showMealplanEditFormAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.edit');
 
+
+Route::get('admin/mealplan/update/{id}', [MealPlanController::class, 'updateAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.update');
+
+// Visualizar uma mealplan específica
+Route::get('admin/mealplan/{id}', [MealPlanController::class, 'showMealplanAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.mealplan.show');
 
 
 

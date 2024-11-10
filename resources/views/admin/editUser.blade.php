@@ -63,13 +63,6 @@
                         <input id="datebirth" type="date" class="form-control" name="datebirth" value="{{ old('datebirth', $user->datebirth) }}">
                       </div>
 
-                      <div class="form-group col-4">
-                        <label for="salario">Salário</label>
-                        <input id="salario" type="text" class="form-control" name="salario"
-                               value="{{ old('salario',
-                                   $user->salario <= 5000 ? 'Baixo' :
-                                   ($user->salario <= 10000 ? 'Médio' : 'Alto')) }}" disabled>
-                    </div>
                   </div>
 
                   <div class="row">
@@ -108,21 +101,6 @@
                       <input id="complement" type="text" class="form-control" name="complement" value="{{ old('complement', $user->address->complement) }}">
                     </div>
                   </div>
-
-                <div class="row">
-                  <div class="form-group col-6">
-                    <label for="password" class="d-block">Senha</label>
-                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" value="{{ old('password', $user->password) }}">
-                    <div id="pwindicator" class="pwindicator">
-                      <div class="bar"></div>
-                      <div class="label"></div>
-                    </div>
-                  </div>
-                  <div class="form-group col-6">
-                    <label for="password_confirmation" class="d-block">Confirme a senha</label>
-                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation', $user->password_confirmation)}}">
-                  </div>
-                </div>
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary" style="width: 190px;">Atualizar</button>
