@@ -6,21 +6,7 @@
       <h1>Painel de Controle</h1>
     </div>
     <div class="row">
-      <!--<div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-          <div class="card-icon bg-primary">
-            <i class="far fa-user"></i>
-          </div>
-          <div class="card-wrap">
-            <div class="card-header">
-              <h4>Administradores</h4>
-            </div>
-            <div class="card-body">
-                1
-            </div>
-          </div>
-        </div>
-      </div>-->
+
       <!--<div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-danger">
@@ -51,6 +37,21 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+          <div class="card-icon bg-primary">
+            <i class="far fa-user"></i>
+          </div>
+          <div class="card-wrap">
+            <div class="card-header">
+              <h4>Administradores</h4>
+            </div>
+            <div class="card-body">
+                {{ $totalPatient }}
+            </div>
+          </div>
+        </div>
+      </div>
       <!--<div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-success">
@@ -66,6 +67,38 @@
           </div>
         </div>
       </div>-->
+      <div class="row">
+        <div class="col-4">
+            <div class="card">
+            <div class="card-header">
+                <h4>Anamneses cadastradas por Mês</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="anamnesesChart"></canvas>
+            </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+            <div class="card-header">
+                <h4>Antropometrias cadastradas por Mês</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="antropometriasChart"></canvas>
+            </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+            <div class="card-header">
+                <h4>Planos Alimentares cadastrados por Mês</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="mealplansChart"></canvas>
+            </div>
+            </div>
+        </div>
+    </div>
     </div>
 
   </section>

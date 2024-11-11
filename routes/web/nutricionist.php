@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\NutricionistController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SeeUsersController;
 use App\Http\Controllers\MealPlanController;
+use App\Http\Controllers\DashboardController;
 
 //Rota nutricionista
 Route::get('nutricionist/dashboard', [NutricionistController::class, 'dashboard'])
@@ -161,3 +162,21 @@ Route::delete('nutricionist/meal-plan/{id}', [MealPlanController::class, 'delete
 Route::put('nutricionist/meal-plan/update/{id}', [MealPlanController::class, 'update'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.meal-plan.update');
+
+Route::get('nutricionist/anamneses/{id}', [AnamneseController::class, 'showAnamneseEdit'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.anamneses');
+
+Route::get('nutricionist/antropometria/{id}', [AntropometriaController::class, 'show'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.antropometria');
+
+Route::get('nutricionist/mealplan/{id}', [MealPlanController::class, 'show'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.mealplan');
+
+Route::get('nutricionist/dashboard/{id}', [DashboardController::class, 'show'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.dashboard.dashboardPaciente');
+
+

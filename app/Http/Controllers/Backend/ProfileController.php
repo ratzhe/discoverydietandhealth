@@ -33,7 +33,7 @@ class ProfileController extends Controller
         'image' => ['image', 'max:2048'],
         'phone' => ['nullable', 'string'],
         'datebirth' => ['nullable', 'date'],
-        'salario' => ['nullable', 'string'],
+        //'salario' => ['nullable', 'string'],
         'cep' => ['nullable', 'string'],
         'street' => ['nullable', 'string'],
         'neighborhood' => ['nullable', 'string'],
@@ -64,7 +64,7 @@ class ProfileController extends Controller
     $user->name = $request->name;
     $user->name = $request->name;
     $user->phone = $request->phone;
-    $user->salario = $request->salario;
+    //$user->salario = $request->salario;
     $user->datebirth = $request->datebirth;
     $user->save();
 

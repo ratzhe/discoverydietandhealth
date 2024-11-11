@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal('salario', 8, 2)->nullable(); // ou o tipo correto da coluna
+            $table->decimal('salario', 8, 2)->nullable(); 
         });
     }
 };

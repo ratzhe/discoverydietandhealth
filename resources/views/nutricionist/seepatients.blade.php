@@ -24,7 +24,7 @@
                             <p class="card-text">{{ $user->email }}</p>
                             <p class="card-text">Paciente</p> <!-- Atualizado para sempre mostrar "Paciente" -->
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="{{ route('nutricionist.dashboard', $user->id) }}" class="btn btn-primary mx-1 btn-custom">Dashboard</a>
+                                <a href="{{ route('nutricionist.dashboard.dashboardPaciente', $user->id) }}" class="btn btn-primary mx-1 btn-custom">Dashboard</a>
                             </div>
                         </div>
                     </div>

@@ -22,13 +22,9 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{ route('admin.anamnese.dashboard') }}">Anamneses</a></li>
             <li><a class="nav-link" href="{{ route('admin.antropometria.dashboard') }}">Antropometria</a></li>
-            <li><a class="nav-link" href="{{ route('admin.mealplan.dashboard') }}">Plano ALimentar</a></li>
+            <li><a class="nav-link" href="{{ route('admin.mealplan.dashboard') }}">Plano Alimentar</a></li>
           </ul>
         </li>
-        
-
-
-
       </aside>
   </div>
 
