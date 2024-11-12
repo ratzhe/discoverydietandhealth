@@ -67,38 +67,38 @@
           </div>
         </div>
       </div>-->
-      <div class="row">
-        <div class="col-4">
-            <div class="card">
-            <div class="card-header">
-                <h4>Anamneses cadastradas por Mês</h4>
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                <div class="card-header">
+                    <h4>Anamneses cadastradas por Mês</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="anamnesesChart"></canvas>
+                </div>
+                </div>
             </div>
-            <div class="card-body">
-                <canvas id="anamnesesChart"></canvas>
+            <div class="col-4">
+                <div class="card">
+                <div class="card-header">
+                    <h4>Antropometrias cadastradas por Mês</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="antropometriasChart"></canvas>
+                </div>
+                </div>
             </div>
+            <div class="col-4">
+                <div class="card">
+                <div class="card-header">
+                    <h4>Planos Alimentares cadastrados por Mês</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="mealplansChart"></canvas>
+                </div>
+                </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card">
-            <div class="card-header">
-                <h4>Antropometrias cadastradas por Mês</h4>
-            </div>
-            <div class="card-body">
-                <canvas id="antropometriasChart"></canvas>
-            </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card">
-            <div class="card-header">
-                <h4>Planos Alimentares cadastrados por Mês</h4>
-            </div>
-            <div class="card-body">
-                <canvas id="mealplansChart"></canvas>
-            </div>
-            </div>
-        </div>
-    </div>
     </div>
 
   </section>
