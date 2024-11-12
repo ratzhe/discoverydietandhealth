@@ -8,8 +8,13 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SeeUsersController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\DashboardController;
+use App\Models\MealPlan;
 
 //Rota nutricionista
+Route::get('nutricionist/dashboard', [NutricionistController::class, 'dashboard'])
+->middleware(['auth', 'nutricionist'])
+->name('nutricionist.dashboard');
+
 Route::get('nutricionist/dashboard', [NutricionistController::class, 'dashboard'])
 ->middleware(['auth', 'nutricionist'])
 ->name('nutricionist.dashboard');
@@ -179,4 +184,15 @@ Route::get('nutricionist/dashboard/{id}', [DashboardController::class, 'show'])
     ->middleware(['auth', 'nutricionist'])
     ->name('nutricionist.dashboard.dashboardPaciente');
 
+Route::put('nutricionist/mealplan/update/{id}', [MealPlanController::class, 'update'])
+->name('nutricionist.mealplan.update');
+
+// Formulário para editar anamnese
+Route::get('nutricionist/meal-plan/{id}/edit', [MealPlanController::class, 'showMealplanEditFormNutri'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.edit');
+
+Route::put('nutricionist/meal-plan/{id}', [MealPlanController::class, 'updateNutri'])
+    ->middleware(['auth', 'nutricionist'])
+    ->name('nutricionist.meal-plan.update');
 

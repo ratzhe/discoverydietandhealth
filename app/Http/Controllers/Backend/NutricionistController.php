@@ -12,11 +12,11 @@ use App\Models\Mealplan;
 
 class NutricionistController extends Controller
 {
-    public function dashboard(){
-        $totalPatient = User::where('role', 'patient')->count();
+    //public function dashboard(){
+        //$totalPatient = User::where('role', 'patient')->count();
 
-        return view('nutricionist/dashboard', compact('totalPatient'));
-    }
+      //  return view('nutricionist/dashboard', compact('totalPatient'));
+    //}
 
     public function seePatients(Request $request)
     {
@@ -333,5 +333,45 @@ class NutricionistController extends Controller
         })->get();
         return view('nutricionist.mealplan.index', compact('users'));
     }
+
+    public function dashboard()
+    {
+
+        $totalNutricionist = User::where('role', 'nutricionist')->count();
+        $totalPatient = User::where('role', 'patient')->count();
+        // Exemplo de consulta para contar as anamneses por mês
+        $anamneses = Anamnese::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                            ->groupBy('month')
+                            ->get();
+
+        $months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        $anamnesesPerMonth = array_fill(0, 12, 0);
+
+        foreach ($anamneses as $anamnese) {
+            $anamnesesPerMonth[$anamnese->month - 1] = $anamnese->count;
+        }
+
+        $antropometrias = Antropometria::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                            ->groupBy('month')
+                            ->get();
+
+        $antropometriaPerMonth = array_fill(0, 12, 0);
+        foreach ($antropometrias as $antropometria) {
+            $antropometriaPerMonth[$antropometria->month - 1] = $antropometria->count;
+        }
+
+        $mealplans = MealPlan::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                            ->groupBy('month')
+                            ->get();
+
+        $mealplanPerMonth = array_fill(0, 12, 0);
+        foreach ($mealplans as $mealplan) {
+            $mealplanPerMonth[$mealplan->month - 1] = $mealplan->count;
+        }
+
+        return view('nutricionist.dashboard', compact('months', 'anamnesesPerMonth', 'antropometriaPerMonth', 'mealplanPerMonth', 'totalNutricionist', 'totalPatient', ));
+    }
+
+
 
 }

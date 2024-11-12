@@ -284,5 +284,21 @@ class AnamneseController extends Controller
         return view('patient.anamnese.dashboard', compact('anamneseList'));
     }
 
+    public function seeAnamnese(Request $request) {
+        $search = $request->search;
+
+        // Busca anamneses com pacientes e nutricionistas correspondentes
+        $anamneseList = Anamnese::with('patient', 'nutricionist')
+            ->whereHas('patient', function ($query) use ($search) {
+                if ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%")
+                          ->orWhere('email', 'LIKE', "%{$search}%");
+                }
+            })
+            ->get();
+
+        return view('admin.anamnese', compact('anamneseList'));
+    }
+
 
 }

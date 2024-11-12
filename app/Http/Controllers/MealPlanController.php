@@ -200,6 +200,40 @@ class MealPlanController extends Controller
         return redirect()->route('admin.mealplan.dashboard')->with('success', 'Plano alimentar atualizado com sucesso!');
     }
 
+    public function updateNutri(Request $request, $id)
+    {
+        // Verifica se o usuário autenticado é um nutricionista
+
+
+        // Validação dos dados recebidos
+        $validated = $request->validate([
+            'patient_id' => 'required',
+            'mealplan_date' => 'required|date',
+            'breakfast' => 'required|array',
+            'morning_snack' => 'required|array',
+            'lunch' => 'required|array',
+            'afternoon_snack' => 'required|array',
+            'dinner' => 'required|array',
+            'supper' => 'required|array',
+        ]);
+
+        // Encontrar o plano alimentar existente
+        $mealPlan = MealPlan::findOrFail($id);
+        $mealPlan->patient_id = $validated['patient_id'];
+        $mealPlan->mealplan_date = $validated['mealplan_date'];
+        $mealPlan->save();
+
+        // Atualiza os itens de cada refeição
+        $this->updateFoodItems($mealPlan->id, 'breakfast', $validated['breakfast']);
+        $this->updateFoodItems($mealPlan->id, 'morning_snack', $validated['morning_snack']);
+        $this->updateFoodItems($mealPlan->id, 'lunch', $validated['lunch']);
+        $this->updateFoodItems($mealPlan->id, 'afternoon_snack', $validated['afternoon_snack']);
+        $this->updateFoodItems($mealPlan->id, 'dinner', $validated['dinner']);
+        $this->updateFoodItems($mealPlan->id, 'supper', $validated['supper']);
+
+        return redirect()->route('nutricionist.mealplan.dashboard')->with('success', 'Plano alimentar atualizado com sucesso!');
+    }
+
     public function showMealplanEditFormAdmin($id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -208,7 +242,15 @@ class MealPlanController extends Controller
 
         $mealplan = MealPlan::findOrFail($id);
         $patients = User::where('role', 'patient')->get();
-        return view('admin/mealplan/edit', compact('mealplan', 'patients'));
+        return view('admin/meal-plan/edit', compact('mealplan', 'patients'));
+    }
+
+    public function showMealplanEditFormNutri($id)
+    {
+
+        $mealplan = MealPlan::findOrFail($id);
+        $patients = User::where('role', 'patient')->get();
+        return view('nutricionist/meal-plan/edit', compact('mealplan', 'patients'));
     }
 
     public function deleteAdmin($id)

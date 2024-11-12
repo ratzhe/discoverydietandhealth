@@ -6,6 +6,7 @@
     <div class="d-flex justify-content-between align-items-center mb-5">
         <h3>Anamneses </h3>
     </div>
+
     <div class="row">
         @foreach($anamneseList as $anamnese)
             <div class="col-md-4">

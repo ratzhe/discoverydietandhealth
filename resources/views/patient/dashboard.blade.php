@@ -5,8 +5,8 @@
         <div class="section-header">
             <h1>Painel de Controle</h1>
         </div>
-        <div class="row">
-            <img href="{{ asset('backend/assets/img/home.jpg') }}" alt="Imagem de Home" />
+        <div>
+            <img src="{{ asset('backend/assets/img/home.jpg') }}" alt="Home patient" class="w-100"/>
         </div>
     </section>
 @endsection

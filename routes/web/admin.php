@@ -97,6 +97,11 @@ Route::delete('admin/anamnese/{id}', [AnamneseController::class, 'destroyAdmin']
     ->middleware(['auth', 'admin'])
     ->name('admin.anamnese.delete');
 
+// Filtro Anamnsese
+Route::get('admin/anamnese/see', [AnamneseController::class, 'seeAnamnese'])
+->middleware(['auth', 'admin'])
+->name('admin.anamnese.see');
+
 
 // Visualizar lista de antropometria no dashboard de administrador
 Route::get('admin/antropometria', [AntropometriaController::class, 'antropometriaDashboard'])
